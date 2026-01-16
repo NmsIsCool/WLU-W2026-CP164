@@ -167,8 +167,13 @@ def by_origin(foods, origin):
 
 
     # Your code here
-
-    return 
+    origins=[]
+    
+    for i in range (len(foods)):
+        if foods[i].origin == origin:
+            origins.append(foods[i])
+            
+    return origins
 
 
 def average_calories(foods):
@@ -186,8 +191,12 @@ def average_calories(foods):
     """
 
     # Your code here
+    total=0
+    for i in range(len(foods)):
+        total+=(foods[i].calories)
+    avg=total/len(foods)
 
-    return 
+    return avg
 
 
 def calories_by_origin(foods, origin):
@@ -207,8 +216,11 @@ def calories_by_origin(foods, origin):
     assert origin in range(len(Food.ORIGIN))
 
     # Your code here
+    foods_of_origin=by_origin(foods, origin)
+    
+    avg=average_calories(foods_of_origin)
 
-    return 
+    return avg
 
 
 def food_table(foods):

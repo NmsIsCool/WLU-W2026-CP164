@@ -11,14 +11,85 @@ Version: 2025-01-16
 -------------------------------------------------------
 t01
 -------------------------------------------------------
+ 0 Canadian
+ 1 Chinese
+ 2 Indian
+ 3 Ethiopian
+ 4 Mexican
+ 5 Greek
+ 6 Japanese
+ 7 Italian
+ 8 American
+ 9 Scottish
+10 New Zealand
+11 English
 
+Enter an Origin: 0
+Grabbing foods of specified origin...
+Done!
+Name:       Canuck Burger
+Origin:     Canadian
+Vegetarian: False
+Calories:   7500
+Name:       Canada Goose Chili
+Origin:     Canadian
+Vegetarian: False
+Calories:   199
+Name:       Poutine
+Origin:     Canadian
+Vegetarian: False
+Calories:   710
+Name:       Fricot
+Origin:     Canadian
+Vegetarian: False
+Calories:   360
+Name:       Grilled Salmon
+Origin:     Canadian
+Vegetarian: False
+Calories:   511
+
+ 0 Canadian
+ 1 Chinese
+ 2 Indian
+ 3 Ethiopian
+ 4 Mexican
+ 5 Greek
+ 6 Japanese
+ 7 Italian
+ 8 American
+ 9 Scottish
+10 New Zealand
+11 English
+
+Enter an Origin: 9
+Grabbing foods of specified origin...
+Done!
+Name:       Shortbread
+Origin:     Scottish
+Vegetarian: True
+Calories:   502
 -------------------------------------------------------
 t02
 -------------------------------------------------------
-
+Average calories of foods in foods.txt is: 791.44
 -------------------------------------------------------
 t03
 -------------------------------------------------------
+ 0 Canadian
+ 1 Chinese
+ 2 Indian
+ 3 Ethiopian
+ 4 Mexican
+ 5 Greek
+ 6 Japanese
+ 7 Italian
+ 8 American
+ 9 Scottish
+10 New Zealand
+11 English
+
+Enter an Origin: 1
+Average calories in specified origin: 361.80
 
 -------------------------------------------------------
 t04
