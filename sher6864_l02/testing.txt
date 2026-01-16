@@ -1,0 +1,555 @@
+"""
+-------------------------------------------------------
+Lab/Assignment  Testing
+-------------------------------------------------------
+Author:  Jack Sherwood
+ID:      169116864
+Email:   sher6864@mylaurier.ca
+Version: 2025-01-15
+-------------------------------------------------------
+"""
+-------------------------------------------------------
+t01
+-------------------------------------------------------
+Top of stack: 19
+-----------------------------
+Former top of stack: 19
+New top of stack: 17
+------------------------------------------
+Is stack empty?: False
+
+-------------------------------------------------------
+t02
+-------------------------------------------------------
+Array pushed to stack
+top of stack: 1
+
+-------------------------------------------------------
+t03
+-------------------------------------------------------
+Array pushed to stack
+top of stack: 1
+Putting stack back to array...
+Stack popped to array!
+19
+17
+15
+12
+0
+6
+3
+9
+5
+2
+8
+4
+1
+
+-------------------------------------------------------
+t04
+-------------------------------------------------------
+Stack initialized
+is empty?: True
+Pushed TEST
+peek after push: TEST
+pop after push: TEST
+Pushed source to stack
+is empty?: False
+peek:
+ 1 
+pop:
+ 1
+peek:
+ 4 
+pop:
+ 4
+peek:
+ 8 
+pop:
+ 8
+peek:
+ 2 
+pop:
+ 2
+peek:
+ 5 
+pop:
+ 5
+peek:
+ 9 
+pop:
+ 9
+peek:
+ 3 
+pop:
+ 3
+peek:
+ 6 
+pop:
+ 6
+peek:
+ 0 
+pop:
+ 0
+peek:
+ 12 
+pop:
+ 12
+peek:
+ 15 
+pop:
+ 15
+peek:
+ 17 
+pop:
+ 17
+peek:
+ 19 
+pop:
+ 19
+Stack empty at end: True
+
+-------------------------------------------------------
+t05
+-------------------------------------------------------
+Stack initialized
+is empty?: True
+Pushed TEST
+peek after push: TEST
+pop after push: TEST
+Pushed source to stack
+is empty?: False
+peek:
+ Name:       Lasagna
+Origin:     Italian
+Vegetarian: False
+Calories:   135 
+pop:
+ Name:       Lasagna
+Origin:     Italian
+Vegetarian: False
+Calories:   135
+peek:
+ Name:       Butter Chicken
+Origin:     Indian
+Vegetarian: False
+Calories:   490 
+pop:
+ Name:       Butter Chicken
+Origin:     Indian
+Vegetarian: False
+Calories:   490
+peek:
+ Name:       Moo Goo Guy Pan
+Origin:     Chinese
+Vegetarian: False
+Calories:   272 
+pop:
+ Name:       Moo Goo Guy Pan
+Origin:     Chinese
+Vegetarian: False
+Calories:   272
+peek:
+ Name:       Vegetable Alicha
+Origin:     Ethiopian
+Vegetarian: True
+Calories:   138 
+pop:
+ Name:       Vegetable Alicha
+Origin:     Ethiopian
+Vegetarian: True
+Calories:   138
+peek:
+ Name:       Spanakopita
+Origin:     Greek
+Vegetarian: True
+Calories:   260 
+pop:
+ Name:       Spanakopita
+Origin:     Greek
+Vegetarian: True
+Calories:   260
+peek:
+ Name:       Chirashi Don
+Origin:     Japanese
+Vegetarian: False
+Calories:   600 
+pop:
+ Name:       Chirashi Don
+Origin:     Japanese
+Vegetarian: False
+Calories:   600
+peek:
+ Name:       Canuck Burger
+Origin:     Canadian
+Vegetarian: False
+Calories:   7500 
+pop:
+ Name:       Canuck Burger
+Origin:     Canadian
+Vegetarian: False
+Calories:   7500
+peek:
+ Name:       Turducken
+Origin:     American
+Vegetarian: False
+Calories:   12240 
+pop:
+ Name:       Turducken
+Origin:     American
+Vegetarian: False
+Calories:   12240
+peek:
+ Name:       Shark Fin Soup
+Origin:     Chinese
+Vegetarian: False
+Calories:   46 
+pop:
+ Name:       Shark Fin Soup
+Origin:     Chinese
+Vegetarian: False
+Calories:   46
+peek:
+ Name:       Chamuco
+Origin:     Mexican
+Vegetarian: True
+Calories:   150 
+pop:
+ Name:       Chamuco
+Origin:     Mexican
+Vegetarian: True
+Calories:   150
+peek:
+ Name:       Natto
+Origin:     Japanese
+Vegetarian: True
+Calories:   212 
+pop:
+ Name:       Natto
+Origin:     Japanese
+Vegetarian: True
+Calories:   212
+peek:
+ Name:       Canada Goose Chili
+Origin:     Canadian
+Vegetarian: False
+Calories:   199 
+pop:
+ Name:       Canada Goose Chili
+Origin:     Canadian
+Vegetarian: False
+Calories:   199
+peek:
+ Name:       Diet Free-Range Gluten-free Water
+Origin:     American
+Vegetarian: True
+Calories:   0 
+pop:
+ Name:       Diet Free-Range Gluten-free Water
+Origin:     American
+Vegetarian: True
+Calories:   0
+peek:
+ Name:       Kung Pao Chicken
+Origin:     Chinese
+Vegetarian: False
+Calories:   229 
+pop:
+ Name:       Kung Pao Chicken
+Origin:     Chinese
+Vegetarian: False
+Calories:   229
+peek:
+ Name:       General Tao Chicken
+Origin:     Chinese
+Vegetarian: False
+Calories:   850 
+pop:
+ Name:       General Tao Chicken
+Origin:     Chinese
+Vegetarian: False
+Calories:   850
+peek:
+ Name:       Spicy Vegetable Moo Shu
+Origin:     Chinese
+Vegetarian: True
+Calories:   140 
+pop:
+ Name:       Spicy Vegetable Moo Shu
+Origin:     Chinese
+Vegetarian: True
+Calories:   140
+peek:
+ Name:       BBQ Pork
+Origin:     Chinese
+Vegetarian: False
+Calories:   920 
+pop:
+ Name:       BBQ Pork
+Origin:     Chinese
+Vegetarian: False
+Calories:   920
+peek:
+ Name:       Orange Chicken
+Origin:     Chinese
+Vegetarian: False
+Calories:   800 
+pop:
+ Name:       Orange Chicken
+Origin:     Chinese
+Vegetarian: False
+Calories:   800
+peek:
+ Name:       Vegetables with Cashew Nuts
+Origin:     Chinese
+Vegetarian: True
+Calories:   143 
+pop:
+ Name:       Vegetables with Cashew Nuts
+Origin:     Chinese
+Vegetarian: True
+Calories:   143
+peek:
+ Name:       Lemon Chicken
+Origin:     Chinese
+Vegetarian: False
+Calories:   226 
+pop:
+ Name:       Lemon Chicken
+Origin:     Chinese
+Vegetarian: False
+Calories:   226
+peek:
+ Name:       Beef with Green Pepper
+Origin:     Chinese
+Vegetarian: False
+Calories:   251 
+pop:
+ Name:       Beef with Green Pepper
+Origin:     Chinese
+Vegetarian: False
+Calories:   251
+peek:
+ Name:       Sweet and Sour Pork
+Origin:     Chinese
+Vegetarian: False
+Calories:   231 
+pop:
+ Name:       Sweet and Sour Pork
+Origin:     Chinese
+Vegetarian: False
+Calories:   231
+peek:
+ Name:       Szechuan Shrimp
+Origin:     Chinese
+Vegetarian: False
+Calories:   516 
+pop:
+ Name:       Szechuan Shrimp
+Origin:     Chinese
+Vegetarian: False
+Calories:   516
+peek:
+ Name:       Poutine
+Origin:     Canadian
+Vegetarian: False
+Calories:   710 
+pop:
+ Name:       Poutine
+Origin:     Canadian
+Vegetarian: False
+Calories:   710
+peek:
+ Name:       Teppanyaki
+Origin:     Japanese
+Vegetarian: False
+Calories:   200 
+pop:
+ Name:       Teppanyaki
+Origin:     Japanese
+Vegetarian: False
+Calories:   200
+peek:
+ Name:       Greek Salad
+Origin:     Greek
+Vegetarian: True
+Calories:   185 
+pop:
+ Name:       Greek Salad
+Origin:     Greek
+Vegetarian: True
+Calories:   185
+peek:
+ Name:       Fettuccine
+Origin:     Italian
+Vegetarian: False
+Calories:   266 
+pop:
+ Name:       Fettuccine
+Origin:     Italian
+Vegetarian: False
+Calories:   266
+peek:
+ Name:       Teriyaki
+Origin:     Japanese
+Vegetarian: False
+Calories:   233 
+pop:
+ Name:       Teriyaki
+Origin:     Japanese
+Vegetarian: False
+Calories:   233
+peek:
+ Name:       Shortbread
+Origin:     Scottish
+Vegetarian: True
+Calories:   502 
+pop:
+ Name:       Shortbread
+Origin:     Scottish
+Vegetarian: True
+Calories:   502
+peek:
+ Name:       Pavlova
+Origin:     New Zealand
+Vegetarian: True
+Calories:   272 
+pop:
+ Name:       Pavlova
+Origin:     New Zealand
+Vegetarian: True
+Calories:   272
+peek:
+ Name:       Hokey Pokey Ice Cream
+Origin:     New Zealand
+Vegetarian: True
+Calories:   106 
+pop:
+ Name:       Hokey Pokey Ice Cream
+Origin:     New Zealand
+Vegetarian: True
+Calories:   106
+peek:
+ Name:       Fricot
+Origin:     Canadian
+Vegetarian: False
+Calories:   360 
+pop:
+ Name:       Fricot
+Origin:     Canadian
+Vegetarian: False
+Calories:   360
+peek:
+ Name:       Chip Butty
+Origin:     English
+Vegetarian: True
+Calories:   956 
+pop:
+ Name:       Chip Butty
+Origin:     English
+Vegetarian: True
+Calories:   956
+peek:
+ Name:       Grilled Salmon
+Origin:     Canadian
+Vegetarian: False
+Calories:   511 
+pop:
+ Name:       Grilled Salmon
+Origin:     Canadian
+Vegetarian: False
+Calories:   511
+peek:
+ Name:       Ravioli
+Origin:     Italian
+Vegetarian: False
+Calories:   246 
+pop:
+ Name:       Ravioli
+Origin:     Italian
+Vegetarian: False
+Calories:   246
+peek:
+ Name:       Crepe
+Origin:     Italian
+Vegetarian: True
+Calories:   186 
+pop:
+ Name:       Crepe
+Origin:     Italian
+Vegetarian: True
+Calories:   186
+peek:
+ Name:       Fried Rice
+Origin:     Chinese
+Vegetarian: False
+Calories:   425 
+pop:
+ Name:       Fried Rice
+Origin:     Chinese
+Vegetarian: False
+Calories:   425
+peek:
+ Name:       Pepperoni Pizza
+Origin:     Italian
+Vegetarian: False
+Calories:   713 
+pop:
+ Name:       Pepperoni Pizza
+Origin:     Italian
+Vegetarian: False
+Calories:   713
+peek:
+ Name:       Chicken Kabob
+Origin:     Indian
+Vegetarian: False
+Calories:   167 
+pop:
+ Name:       Chicken Kabob
+Origin:     Indian
+Vegetarian: False
+Calories:   167
+peek:
+ Name:       Panzerotti
+Origin:     Italian
+Vegetarian: False
+Calories:   770 
+pop:
+ Name:       Panzerotti
+Origin:     Italian
+Vegetarian: False
+Calories:   770
+peek:
+ Name:       Spring Rolls
+Origin:     Chinese
+Vegetarian: True
+Calories:   200 
+pop:
+ Name:       Spring Rolls
+Origin:     Chinese
+Vegetarian: True
+Calories:   200
+peek:
+ Name:       Chicken Chow Mein
+Origin:     Chinese
+Vegetarian: False
+Calories:   178 
+pop:
+ Name:       Chicken Chow Mein
+Origin:     Chinese
+Vegetarian: False
+Calories:   178
+peek:
+ Name:       Chicken Wings
+Origin:     American
+Vegetarian: False
+Calories:   298 
+pop:
+ Name:       Chicken Wings
+Origin:     American
+Vegetarian: False
+Calories:   298
+Stack empty at end: True
+
+-------------------------------------------------------
+
