@@ -11,7 +11,6 @@ __updated__ = '2026-01-16'
 
 #Imports
 from Food_utilities import average_calories, read_foods
-from Food import Food
 
 foods_file=open("foods.txt","r",encoding="utf-8")
 foods_list=read_foods(foods_file)

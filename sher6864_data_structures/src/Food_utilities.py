@@ -163,7 +163,7 @@ def by_origin(foods, origin):
         origins - Food objects from foods that are of a particular origin (list of Food)
     -------------------------------------------------------
     """
-    assert origin in range(len(Food.ORIGIN))
+    assert origin in range(len(Food.ORIGIN)), "Origin must be within origins list"
 
 
     # Your code here
@@ -213,7 +213,7 @@ def calories_by_origin(foods, origin):
         avg - average calories for all Foods of the requested origin (int)
     -------------------------------------------------------
     """
-    assert origin in range(len(Food.ORIGIN))
+    assert origin in range(len(Food.ORIGIN)), "Origin must be within origins list"
 
     # Your code here
     foods_of_origin=by_origin(foods, origin)
@@ -238,7 +238,15 @@ def food_table(foods):
     """
 
     # Your code here
-
+    temp_foods=sorted(foods)
+    
+    #One Time Run Behavior
+    print("Food                                Origin       Vegetarian Calories")
+    print("----------------------------------- ------------ ---------- --------")
+    
+    #Iterate <foods> and print attributes
+    for i in range(len(temp_foods)):
+        print(f"{temp_foods[i].name:<36}{Food.ORIGIN[temp_foods[i].origin]:<13}{temp_foods[i].is_vegetarian!s:>10}{temp_foods[i].calories:>9}")
     return
 
 
@@ -259,8 +267,17 @@ def food_search(foods, origin, max_cals, is_veg):
             foods parameter must be unchanged
     -------------------------------------------------------
     """
-    assert origin in range(-1, len(Food.ORIGIN))
+    assert origin in range(-1, len(Food.ORIGIN)), "Origin must be within origins list, or -1"
 
     # Your code here
-
-    return
+    result=[]
+    
+    for i in range (len(foods)):
+        if(foods[i].origin == origin or origin == -1):
+            if(foods[i].calories<= max_cals or max_cals == 0):
+                if(not bool(is_veg)) or bool(foods[i].is_vegetarian):
+                    result.append(foods[i])
+    
+    result.sort()
+    
+    return result
