@@ -10,6 +10,7 @@ __updated__ = '2026-01-15'
 """
 
 from Stack_array import Stack
+from Queue_array import Queue
 
 def array_to_stack(stack, source):
     """
@@ -92,6 +93,76 @@ def stack_test(source):
         print("peek:\n", stack.peek(), "\npop:\n", stack.pop())
 
     print("Stack empty at end:", stack.is_empty())
+    
+def array_to_queue(queue, source):
+    """
+    -------------------------------------------------------
+    Inserts contents of source into Queue. At finish, source is empty.
+    Last value in source is at rear of Queue,
+    first value in source is at front of Queue.
+    Use: array_to_queue(queue, source)
+    -------------------------------------------------------
+    Parameters:
+        queue - a Queue object (Queue)
+        source - a Python list (list)
+    Returns:
+        None
+    -------------------------------------------------------
+    """
+    
+    temp=[]
+    while source:
+        temp.append(source.pop())
+        
+    while temp:
+        queue.insert(temp.pop())
+    
+    return
+
+def queue_to_array(queue, target):
+    """
+    -------------------------------------------------------
+    Removes contents of Queue into target. At finish, queue is empty.
+    Front value of Queue is at front of target,
+    rear value of Queue is at end of target.
+    Use: queue_to_array(queue, target)
+    -------------------------------------------------------
+    Parameters:
+        queue - a Queue object (Queue)
+        target - a Python list (list)
+    Returns:
+        None
+    -------------------------------------------------------
+    """
+    
+    while not queue.is_empty():
+        target.append(queue.remove())
+    
+    return
+
+def queue_test(a):
+    """
+    -------------------------------------------------------
+    Tests Queue implementation.
+    Tests the methods of Queue are tested for both empty and
+    non-empty Queues using the data in a:
+    is_empty, insert, remove, peek, len
+    Use: queue_test(a)
+    -------------------------------------------------------
+    Parameters:
+        a - list of data (list of ?)
+    Returns:
+        None
+    -------------------------------------------------------
+    """
+    q = Queue()
+
+    # tests for the Queue methods go here
+    # print the results of the method calls and verify by hand
+    
+    #TODO: visit help session for this I think...
+
+    return
     
     
     
