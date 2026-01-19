@@ -105,8 +105,8 @@ class Priority_Queue:
         
         # your code here
         value=self._values.pop(self._first)
+        self.set_first()
         
-
         return value
 
     def _set_first(self):
