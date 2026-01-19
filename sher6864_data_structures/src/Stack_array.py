@@ -107,3 +107,53 @@ class Stack:
         """
         for value in self._values[::-1]:
             yield value
+    
+    def combine(self, source1, source2):
+        """
+        -------------------------------------------------------
+        Combines two source Stacks into the current target Stack.
+        When finished, the contents of source1 and source2 are interlaced
+        into target and source1 and source2 are empty.
+        Use: target.combine(source1, source2)
+        -------------------------------------------------------
+        Parameters:
+            source1 - an array-based stack (Stack)
+            source2 - an array-based stack (Stack)
+        Returns:
+            None
+        -------------------------------------------------------
+        """
+        
+        temp1=[]
+        temp2=[]
+        
+        while source1._values:
+            temp1.append(source1._values.pop())
+        while source2._values:
+            temp2.append(source2._values.pop())
+        
+        while temp1 or temp2:
+            if temp1:
+                self._values.append(temp1.pop())
+            if temp2:
+                self._values.append(temp2.pop())
+        
+        
+            
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
