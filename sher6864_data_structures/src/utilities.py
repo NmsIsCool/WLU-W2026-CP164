@@ -11,6 +11,7 @@ __updated__ = '2026-01-15'
 
 from Stack_array import Stack
 from Queue_array import Queue
+from Priority_Queue_array import Priority_Queue
 
 def array_to_stack(stack, source):
     """
@@ -161,6 +162,72 @@ def queue_test(a):
     # print the results of the method calls and verify by hand
     
     #TODO: visit help session for this I think...
+
+    return
+
+def array_to_pq(pq, source):
+    """
+    -------------------------------------------------------
+    Inserts contents of source into pq. At finish, source is empty.
+    Last value in source is at rear of pq,
+    first value in source is at front of pq.
+    Use: array_to_pq(pq, source)
+    -------------------------------------------------------
+    Parameters:
+        pq - a Priority_Queue object (Priority_Queue)
+        source - a Python list (list)
+    Returns:
+        None
+    -------------------------------------------------------
+    """
+    
+    temp=[]
+    while source:
+        temp.append(source.pop())
+    
+    while temp:
+        pq.insert(temp.pop())
+
+def pq_to_array(pq, target):
+    """
+    -------------------------------------------------------
+    Removes contents of pq into target. At finish, pq is empty.
+    Highest priority value in pq is at front of target,
+    lowest priority value in pq is at end of target.
+    Use: pq_to_array(pq, target)
+    -------------------------------------------------------
+    Parameters:
+        pq - a Priority_Queue object (Priority_Queue)
+        target - a Python list (list)
+    Returns:
+        None
+    -------------------------------------------------------
+    """
+    
+    while not pq.is_empty():
+        target.append(pq.remove())
+
+def priority_queue_test(a):
+    """
+    -------------------------------------------------------
+    Tests Priority Queue implementation.
+    Test the methods of Priority_Queue are tested for both empty and
+    non-empty Priority Queues using the data in a:
+        is_empty, insert, remove, peek
+    Use: priority_queue_test(a)
+    -------------------------------------------------------
+    Parameters:
+        a - list of data (list of ?)
+    Returns:
+        None
+    -------------------------------------------------------
+    """
+    pq = Priority_Queue()
+
+    # tests for the Priority Queue methods go here
+    # print the results of the method calls and verify by hand
+    
+    #TODO: Visit Help Session on what to do for these
 
     return
     
