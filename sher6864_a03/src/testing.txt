@@ -52,10 +52,34 @@ Is "racecar" a palindrome? -> True
 -------------------------------------------------------
 t04
 -------------------------------------------------------
+Enter a postfix expression: 4 5 + 12 * 2 3 * -
+Your postfix expression evaluates to: 102
+
+Enter a postfix expression: 1 2 3 * *
+Your postfix expression evaluates to: 6
 
 -------------------------------------------------------
 t05
 -------------------------------------------------------
+Solution to the maze:
+A
+B
+C
+D
+E
+X
+
+-------------------------------------------------------
+t06
+-------------------------------------------------------
+Enter an Opstring (X means pop, S means push): SSSXXXSSSXXX
+Your Reordered list is:
+5
+3
+2
+13
+11
+7
 
 -------------------------------------------------------
 
