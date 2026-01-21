@@ -159,9 +159,23 @@ def queue_test(a):
     q = Queue()
 
     # tests for the Queue methods go here
-    # print the results of the method calls and verify by hand
     
-    #TODO: visit help session for this I think...
+    print("Queue initialized")
+    print("is empty?:", q.is_empty())
+    
+    q.insert("TEST")
+    print("""Inserted 'TEST'""")
+    print("peek after insert:", q.peek())
+    print("remove after insert:", q.remove())
+
+    array_to_queue(q, a)
+    print("Inserted <a> to queue")
+    print("is empty?:", q.is_empty())
+
+    while not q.is_empty():
+        print("peek:\n", q.peek(), "\nremove:\n", q.remove())
+
+    print("Queue empty at end:", q.is_empty())
 
     return
 
@@ -224,10 +238,23 @@ def priority_queue_test(a):
     """
     pq = Priority_Queue()
 
-    # tests for the Priority Queue methods go here
-    # print the results of the method calls and verify by hand
+    print("Priority Queue initialized")
+    print("is empty?:", pq.is_empty())
     
-    #TODO: Visit Help Session on what to do for these
+    pq.insert("TEST")
+    print("""Inserted 'TEST'""")
+    print("peek after insert:", pq.peek())
+    print("remove after insert:", pq.remove())
+
+    array_to_queue(pq, a)
+    print("Inserted <a> to priority queue")
+    print("is empty?:", pq.is_empty())
+
+    while not pq.is_empty():
+        print("peek:\n", pq.peek(), "\nremove:\n", pq.remove())
+
+    print("Priority Queue empty at end:", pq.is_empty())
+
 
     return
     

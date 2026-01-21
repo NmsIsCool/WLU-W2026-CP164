@@ -3,9 +3,9 @@
 Lab 3, Task 3
 -------------------------------------------------------
 Author:  Jack Sherwood
-ID:             1691168645
+ID:             169116864
 Email:        sher6864@mylaurier.ca
-__updated__ = Jan 18, 2026
+__updated__ = '2026-01-20'
 -------------------------------------------------------
 """
 
@@ -36,6 +36,11 @@ for i in range(len(target)):
     print(target[i])
     
 
-#TODO: Implement tests for queue_test() Function
+print("-------------------------------------------")
+print("<Now running queue_test(array) tests>")
+print("-------------------------------------------")
+array=[1,2,3,4,5,6,7,8,9,10,12,14,16,18,20,23,26,29,34,38]
+queue_test(array)
+
 
 

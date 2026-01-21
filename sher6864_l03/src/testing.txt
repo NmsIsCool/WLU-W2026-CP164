@@ -1,35 +1,291 @@
 """
 -------------------------------------------------------
-Lab/Assignment  Testing
+Lab 3 Testing
 -------------------------------------------------------
 Author:  Jack Sherwood
 ID:      169116864
 Email:   sher6864@mylaurier.ca
-Version: 2025-01-18
+Version: 2025-01-20
 -------------------------------------------------------
 """
 -------------------------------------------------------
 t01
 -------------------------------------------------------
+Enter something to insert into the queue: I Like CP164
+Value Inserted! (I promise)
 
 -------------------------------------------------------
 t02
 -------------------------------------------------------
+Contents of nums array: 
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+12
+14
+16
+18
+20
+23
+26
+29
+34
+38
+Adding nums to queue: 
+Content Added
+Peek: 1
+Removed: 1, Peek: 2
+Removed: 2, Peek: 3
+Removed: 3, Peek: 4
+Removed: 4, Peek: 5
+Removed: 5, Peek: 6
+Removed: 6, Peek: 7
+Removed: 7, Peek: 8
+Removed: 8, Peek: 9
+Removed: 9, Peek: 10
+Removed: 10, Peek: 12
+Removed: 12, Peek: 14
+Removed: 14, Peek: 16
+Removed: 16, Peek: 18
+Removed: 18, Peek: 20
+Removed: 20, Peek: 23
+Removed: 23, Peek: 26
+Removed: 26, Peek: 29
+Removed: 29, Peek: 34
+Removed: 34, Peek: 38
+Removed: 38, Peek: No More Values
 
 -------------------------------------------------------
 t03
 -------------------------------------------------------
+Contents of array: 
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+12
+14
+16
+18
+20
+23
+26
+29
+34
+38
+array_to_queue(queue,array) -> 
+Done!
+Length of queue: 20
+queue_to_array(queue, target)
+Done!
+Contents of target: 
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+12
+14
+16
+18
+20
+23
+26
+29
+34
+38
+-------------------------------------------
+<Now running queue_test(array) tests>
+-------------------------------------------
+Queue initialized
+is empty?: True
+Inserted 'TEST'
+peek after insert: TEST
+remove after insert: TEST
+Inserted <a> to queue
+is empty?: False
+peek:
+ 1 
+remove:
+ 1
+peek:
+ 2 
+remove:
+ 2
+peek:
+ 3 
+remove:
+ 3
+peek:
+ 4 
+remove:
+ 4
+peek:
+ 5 
+remove:
+ 5
+peek:
+ 6 
+remove:
+ 6
+peek:
+ 7 
+remove:
+ 7
+peek:
+ 8 
+remove:
+ 8
+peek:
+ 9 
+remove:
+ 9
+peek:
+ 10 
+remove:
+ 10
+peek:
+ 12 
+remove:
+ 12
+peek:
+ 14 
+remove:
+ 14
+peek:
+ 16 
+remove:
+ 16
+peek:
+ 18 
+remove:
+ 18
+peek:
+ 20 
+remove:
+ 20
+peek:
+ 23 
+remove:
+ 23
+peek:
+ 26 
+remove:
+ 26
+peek:
+ 29 
+remove:
+ 29
+peek:
+ 34 
+remove:
+ 34
+peek:
+ 38 
+remove:
+ 38
+Queue empty at end: True
 
 -------------------------------------------------------
 t04
 -------------------------------------------------------
+Using <peek> and <insert> with array <nums>
+<nums> inserted
+Top of pq: 1
 
 -------------------------------------------------------
 t05
 -------------------------------------------------------
+Using <peek> and <insert> with array <nums>
+Top of pq: 1
+Removed: 1
 
 -------------------------------------------------------
 t06
 -------------------------------------------------------
+Loading <nums> to pq...
+Done!
+pq.peek() -> 1
+Loading pq to <target>...
+Done!
+1
+1
+2
+3
+5
+8
+13
+21
+34
+55
+---------------------------------------------
+<Now running priority_queue_test(nums) tests>
+---------------------------------------------
+Priority Queue initialized
+is empty?: True
+Inserted 'TEST'
+peek after insert: TEST
+remove after insert: TEST
+Inserted <a> to priority queue
+is empty?: False
+peek:
+ 1 
+remove:
+ 1
+peek:
+ 1 
+remove:
+ 1
+peek:
+ 2 
+remove:
+ 2
+peek:
+ 3 
+remove:
+ 3
+peek:
+ 5 
+remove:
+ 5
+peek:
+ 8 
+remove:
+ 8
+peek:
+ 13 
+remove:
+ 13
+peek:
+ 21 
+remove:
+ 21
+peek:
+ 34 
+remove:
+ 34
+peek:
+ 55 
+remove:
+ 55
+Priority Queue empty at end: True
 
 -------------------------------------------------------
