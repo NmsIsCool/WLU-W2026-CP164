@@ -86,7 +86,7 @@ class Priority_Queue:
         assert len(self._values) > 0, "Cannot peek at an empty priority queue"
         
         # your code here
-        value=deepcopy(self._values[0])
+        value=deepcopy(self._values[self._first])
         
         return value
 
