@@ -125,10 +125,12 @@ class Priority_Queue:
         # your code here
         if len(self._values) == 1:
             self._first=0
-        
-        for i in range(len(self._values)):
-            if (self._values[i] < self._values[self._first]):
-                self._first=i
+        elif len(self._values) == 0:
+            self._first=None
+        else:
+            for i in range(len(self._values)):
+                if (self._values[i] < self._values[self._first]):
+                    self._first=i
         return
 
     def __iter__(self):
