@@ -12,6 +12,8 @@ __updated__ = '2026-01-15'
 from Stack_array import Stack
 from Queue_array import Queue
 from Priority_Queue_array import Priority_Queue
+from List_array import List
+from Food import Food
 
 def array_to_stack(stack, source):
     """
@@ -257,6 +259,149 @@ def priority_queue_test(a):
 
 
     return
+
+def array_to_list(llist, source):
+    """
+    -------------------------------------------------------
+    Appends contests of source to llist. At finish, source is empty.
+    Last element in source is at rear of llist,
+    first element in source is at front of llist.
+    Use: array_to_list(llist, source)
+    -------------------------------------------------------
+    Parameters:
+        llist - a List object (List)
+        source - a Python list (list)
+    Returns:
+        None
+    -------------------------------------------------------
+    """
+    
+    temp = []
+    while source:
+        temp.append(source.pop())
+    
+    while temp:
+        llist.append(temp.pop())
+        
+
+def list_to_array(llist, target):
+    """
+    -------------------------------------------------------
+    Removes contents of llist into target. At finish, llist is empty.
+    Front element of llist is at front of target,
+    rear element of llist is at rear of target.
+    Use: list_to_array(llist, target)
+    -------------------------------------------------------
+    Parameters:
+        llist - a List object (List)
+        target - a Python list (list)
+    Returns:
+        None
+    -------------------------------------------------------
+    """
+    
+    temp=[]
+    while not llist.is_empty():
+        temp.append(llist.pop())
+    
+    while len(temp)>0:
+        target.append(temp.pop())
+        
+
+def list_test(source):
+    """
+    -------------------------------------------------------
+    Tests List implementation.
+    The methods of List are tested for both empty and
+    non-empty lists using the data in source
+    Use: list_test(source)
+    -------------------------------------------------------
+    Parameters:
+        source - list of data (list of ?)
+    Returns:
+        None
+    -------------------------------------------------------
+    """
+    lst = List()
+
+    # tests for the List methods go here
+    # print the results of the method calls and verify by hand
+    print("Is lst empty?")
+    print(f"lst.is_empty() -> {lst.is_empty()}")
+    
+    print("Testing lst.insert() with source[0] at index 0:")
+    lst.insert(0,source[0])
+    print(f"lst[0] -> {lst[0]}")
+    
+    print("---------")
+    
+    print("Testing lst.append() with source[1]")
+    lst.append(source[1])
+    print(f"lst[1] -> {lst[1]}")
+    
+    print("---------")
+    
+    print("Testing lst.remove() with key 'Butter Chicken':")
+    butter_chicken=Food("Butter Chicken",2, None, None)
+    lst.remove(butter_chicken)
+    print(f"new length of lst: {len(lst)}")
+    print(f"lst[0] -> {lst[0]}")
+    
+    print("---------")
+    
+    print("Loading 'source' into lst: ")
+    while not lst.is_empty():
+        lst.remove_front()
+    
+    array_to_list(lst, source)
+    print(f"New length of lst: ")
+    print(f"new length of lst: {len(lst)}")
+    
+    print("---------")
+    
+    print("Testing lst.index() with key 'Pavlova'")
+    pavlova=Food("Pavlova",10,None, None)
+    print(f"lst.index('Pavlova') -> {lst.index(pavlova)}")
+    
+    print("---------")
+    
+    print("Testing lst.find() with key 'Crepe'")
+    crepe=Food("Crepe",7, None, None)
+    find_item=lst.find(crepe)
+    print(f"Found item: \n{find_item}")
+    
+    print("---------")
+    
+    print("Testing <<ravioli in lst>> (__contains__):")
+    ravioli=Food("Ravioli",7,None,None)
+    is_in_list = ravioli in lst
+    print(f"ravlioli in lst -> {is_in_list}")
+    
+    print("---------")
+    
+    print("Testing lst.count() with key 'Lasagna'")
+    lasagna=Food("Lasagna",7,None,None)
+    num=lst.count(lasagna)
+    print(f"Count of 'Lasagna' -> {num}")
+    
+    
+    print("---------")
+    
+    print("Testing lst.max()")
+    maximum=lst.max()
+    print(f"Max value in lst -> \n{maximum}")
+    
+    print("---------")
+    
+    print("Testing lst.min()")
+    minimum=lst.min()
+    print(f"Min value in lst -> \n{minimum}")
+    
+    print("---------")
+    print("Tests Complete!")
+    return
+    
+    
     
     
     

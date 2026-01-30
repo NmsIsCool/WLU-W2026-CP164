@@ -112,7 +112,7 @@ class List:
         """
         # Your code here
         
-        return (i<len(self._values) and i>(len(self._values) * -1))
+        return (i <= len(self._values) and i >= (len(self._values) * -1))
             
 
        
@@ -360,8 +360,9 @@ class List:
         -------------------------------------------------------
         """
         # Your code here
+        
 
-        return
+        return len(self._values)>0
 
     def __eq__(self, target):
         """
@@ -525,8 +526,9 @@ class List:
         assert (len(self._values) > 0), 'Cannot remove from an empty list'
 
         # Your code here
+        
 
-        return
+        return self._values.pop(0)
 
     def remove_many(self, key):
         """
