@@ -40,8 +40,7 @@ class List:
         assert self._is_valid_index(i), 'Invalid index value'
 
         # Your code here
-
-        return
+        return self._values[i]
 
     def __len__(self):
         """
@@ -55,7 +54,7 @@ class List:
         """
         # Your code here
 
-        return
+        return len(self._values)
 
     def __setitem__(self, i, value):
         """
@@ -74,6 +73,8 @@ class List:
         assert self._is_valid_index(i), 'Invalid index value'
 
         # Your code here
+            
+        self._values[i] = value
 
         return
 
@@ -91,6 +92,7 @@ class List:
         """
 
         # Your code here
+        i=self._linear_search(key)
 
         return i > -1
 
@@ -109,8 +111,11 @@ class List:
         -------------------------------------------------------
         """
         # Your code here
+        
+        return (i<len(self._values) and i>(len(self._values) * -1))
+            
 
-        return
+       
 
     def _linear_search(self, key):
         """
@@ -127,20 +132,16 @@ class List:
         """
         # Your code here
         
-        i=None
+        i=-1
         found=False
-        num=0
+        index=0
         
-        while (not found) and num<len(self._values):
-            if self._values[num] == key:
+        while not found and index<len(self._values):
+            if (key == self._values[index]):
                 found=True
-                i=num
-            num+=1
-            
-        if found==False:
-            i=-1
-            
-            
+                i=index
+            index+=1
+                
         return i
 
     def _swap(self, i, j):
@@ -179,6 +180,7 @@ class List:
         -------------------------------------------------------
         """
         # Your code here
+        self._values.append(deepcopy(value))
 
         return
 
@@ -261,8 +263,16 @@ class List:
         -------------------------------------------------------
         """
         # Your code here
+        
+        number = 0
+        index = 0
+        
+        while index < len(self._values):
+            if self._values[index] == key:
+                number+=1
+            index+=1
 
-        return
+        return number
 
     def find(self, key):
         """
@@ -277,9 +287,13 @@ class List:
         -------------------------------------------------------
         """
         # Your code here
-
-        return
-
+        index=self._linear_search(key)
+        if index == -1:
+            value=None
+        else:
+            value=deepcopy(self._values[index])
+        return value
+            
     def index(self, key):
         """
         -------------------------------------------------------
@@ -294,8 +308,9 @@ class List:
         -------------------------------------------------------
         """
         # Your code here
+        i = self._linear_search(key)
 
-        return
+        return i
 
     def insert(self, i, value):
         """
@@ -364,8 +379,15 @@ class List:
         -------------------------------------------------------
         """
         # Your code here
+        
+        i=0
+        equals=True
+        while i < len(self._values) and equals:
+            if not self._values[i] == target[i]:
+                equals=False
+            i+=1
 
-        return
+        return equals
 
     def max(self):
         """
@@ -380,8 +402,13 @@ class List:
         assert (len(self._values) > 0), 'Cannot find maximum of an empty list'
 
         # Your code here
+        value=deepcopy(self._values[0])
+        for i in range (1,len(self._values)):
+            if self._values[i] > value:
+                value=deepcopy(self._values[i])
+            
 
-        return
+        return value
 
     def min(self):
         """
@@ -396,8 +423,13 @@ class List:
         assert (len(self._values) > 0), 'Cannot find minimum of an empty list'
 
         # Your code here
+        value=deepcopy(self._values[0])
+        for i in range (1,len(self._values)):
+                if self._values[i] < value:
+                    value=deepcopy(self._values[i])
+            
 
-        return
+        return value
 
     def peek(self):
         """
@@ -472,8 +504,13 @@ class List:
         -------------------------------------------------------
         """
         # Your code here
-
-        return
+        index=self._linear_search(key)
+        
+        if not index == -1:
+            value=self._values.pop(index)
+        else:
+            value=None
+        return value
 
     def remove_front(self):
         """
