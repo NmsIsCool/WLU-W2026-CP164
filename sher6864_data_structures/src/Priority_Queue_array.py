@@ -123,14 +123,15 @@ class Priority_Queue:
         """
 
         # your code here
-        if len(self._values) == 1:
-            self._first=0
-        elif len(self._values) == 0:
-            self._first=None
+        if len(self._values) == 0:
+            self._first = None
+
         else:
-            for i in range(len(self._values)):
-                if (self._values[i] < self._values[self._first]):
-                    self._first=i
+            self._first = 0  # reset to a valid index
+
+            for i in range(1, len(self._values)):
+                if self._values[i] < self._values[self._first]:
+                    self._first = i
         return
 
     def __iter__(self):
@@ -147,3 +148,36 @@ class Priority_Queue:
         """
         for value in self._values:
             yield value
+            
+    
+    def split_key(self, key):
+        """
+        -------------------------------------------------------
+        Splits a Priority Queue into two depending on an external
+        priority key. The source Priority Queue is empty when the method
+        ends. The order of the values from source is preserved.
+        Use: target1, target2 = source.split_key(key)
+        -------------------------------------------------------
+        Parameters:
+            key - a data object (?)
+        Returns:
+            target1 - a priority queue that contains all values
+                with priority higher than key (Priority_Queue)
+            target2 - priority queue that contains all values with
+                priority lower than or equal to key (Priority_Queue)
+        -------------------------------------------------------
+        """
+        
+        target1 = Priority_Queue()
+        target2 = Priority_Queue()
+    
+        while not len(self._values) == 0:
+            if self._values[self._first] > key:
+                target1.insert(self._values.pop(self._first))
+                self._set_first()
+        
+            elif self._values[self._first] <= key:
+                target2.insert(self._values.pop(self._first))
+                self._set_first()
+
+        return target1, target2

@@ -131,4 +131,36 @@ class Queue:
         """
         for value in self._values:
             yield value
+            
+    def split_alt(self):
+        """
+        -------------------------------------------------------
+        Splits the source Queue into separate target Queues with values
+        alternating into the targets. At finish source Queue is empty.
+        Order of source values is preserved.
+        (iterative algorithm)
+        Use: target1, target2 = source.split_alt()
+        -------------------------------------------------------
+        Returns:
+            target1 - contains alternating values from source (Queue)
+            target2 - contains remaining values from source (Queue)
+        -------------------------------------------------------
+        """
+        
+        target1=Queue()
+        target2=Queue()
+    
+        switcher=1
+    
+        while not (len(self._values) == 0):
+            if switcher==1:
+                target1.insert(self._values.pop(0))
+                switcher=0
+            else:
+                target2.insert(self._values.pop(0))
+                switcher=1
+    
+        return target1, target2
+            
+    
 
