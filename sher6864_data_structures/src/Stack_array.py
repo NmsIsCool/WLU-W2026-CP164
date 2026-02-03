@@ -107,6 +107,25 @@ class Stack:
         """
         for value in self._values[::-1]:
             yield value
+            
+    def __str__(self):
+        """
+        FOR TESTING ONLY
+        -------------------------------------------------------
+        Outputs the contents of the stack
+        Use: print(stack)
+        -------------------------------------------------------
+        Returns:
+            str - contents and reminder of stack
+        -------------------------------------------------------
+        """
+        
+        str="(Bottom -> Top),"
+        for i in range(len(self._values)):
+            str+=f"{self._values[i]}, "
+        
+        return str
+        
     
     def combine(self, source1, source2):
         """
