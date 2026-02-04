@@ -8,6 +8,10 @@ Email:     sher6864@mylaurier.ca
 __updated__ = '2026-02-02'
 ------------------------------------------------------------------------
 """
+from pickle import FALSE
+
+#CONSTANTS
+VOWELS="aeiou"
 
 def recurse(x, y):
     """
@@ -65,10 +69,16 @@ def vowel_count(s):
     -------------------------------------------------------
     """
     
-    if (len(s) == 0):
+    if (s == ""):
         count=0
     else:
-        pass
+        if(s[0].lower() in VOWELS):
+            count = 1+vowel_count(s[1:])
+        else:
+            count = vowel_count(s[1:])
+    
+    return count
+        
         
         
     
@@ -86,7 +96,77 @@ def to_power(base, power):
     -------------------------------------------------------
     """
     
+    if power == 0:
+        ans=1
+    else:
+        if(power > 0):
+            ans=base*to_power(base, power-1)
+        elif(power < 0):
+            ans= 1/to_power(base, -power)
     
+    return ans
+
+def is_palindrome(s):
+    """
+    -------------------------------------------------------
+    Recursively determines if s is a palindrome. Ignores non-letters and case.
+    Use: palindrome = is_palindrome(s)
+    -------------------------------------------------------
+    Parameters:
+        s - a string (str)
+    Returns:
+        palindrome - True if s is a palindrome, False otherwise (boolean)
+    -------------------------------------------------------
+    """
+    
+    
+    
+    if len(s) <=1:
+        palindrome=True
+    
+    else:
+        if not s[0].isalpha():
+            palindrome=is_palindrome(s[1:])
+        elif not s[-1].isalpha():
+            palindrome=is_palindrome(s[:-1])
+        elif s[0].lower() == s[-1].lower():
+            palindrome=is_palindrome(s[1:-1])
+        else:
+            palindrome=False
+        
+    return palindrome
+
+
+
+def bag_to_set(bag):
+    """
+    -------------------------------------------------------
+    Copies elements of a bag to a set.
+    Use: new_set = bag_to_set(bag)
+    -------------------------------------------------------
+    Parameters:
+        bag - a list of values (list)
+    Returns:
+        new_set - containing one each of the elements in bag (list)
+    -------------------------------------------------------
+    """
+    
+    if len(bag)==0:
+        new_set=[]
+    
+    else:
+        new_set=bag_to_set(bag[:-1])
+        
+        if bag[-1] not in new_set:
+            new_set.append(bag[-1])
+        
+    return new_set
+        
+        
+    
+            
+        
+            
     
     
         
