@@ -213,6 +213,12 @@ class List:
         -------------------------------------------------------
         """
         # Your code here
+        seen=[]
+        for i in range(len(self._values)):
+            if self._values[i] not in seen:
+                seen.append(self._values[i])
+            else:
+                self._values.pop(i)
 
         return
 
