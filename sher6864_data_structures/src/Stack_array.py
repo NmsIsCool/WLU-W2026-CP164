@@ -143,19 +143,17 @@ class Stack:
         -------------------------------------------------------
         """
         
-        temp1=[]
-        temp2=[]
+        while len(source1._values) > 0 and len(source2._values) > 0:
+            self._values.append(source1._values.pop())
+            self._values.append(source2._values.pop())
+
+        while len(source1._values) > 0:
+            self._values.append(source1._values.pop())
+
+        while len(source2._values) > 0:
+            self._values.append(source2._values.pop())
         
-        while source1._values:
-            temp1.append(source1._values.pop())
-        while source2._values:
-            temp2.append(source2._values.pop())
-        
-        while temp1 or temp2:
-            if temp1:
-                self._values.append(temp1.pop())
-            if temp2:
-                self._values.append(temp2.pop())
+        return
         
         
             
