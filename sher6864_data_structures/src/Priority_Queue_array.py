@@ -26,6 +26,27 @@ class Priority_Queue:
         """
         self._values = []
         self._first = None
+        
+    def __str__(self):
+        """
+        FOR TESTING ONLY
+        -------------------------------------------------------
+        Outputs the contents of the queue and indicated highest
+        priority item by surrounding it with asterisks
+        Use: print(stack)
+        -------------------------------------------------------
+        Returns:
+            str - contents of queue and indicator of priority
+        -------------------------------------------------------
+        """
+        str=""
+        for i in range(len(self._values)):
+            if i == self._first:
+                str+=f"*{self._values[i]}*, "
+            else:
+                str+=f"{self._values[i]}, "
+        
+        return str
 
     def is_empty(self):
         """
@@ -172,11 +193,11 @@ class Priority_Queue:
         target2 = Priority_Queue()
     
         while not len(self._values) == 0:
-            if self._values[self._first] > key:
+            if self._values[self._first] < key:
                 target1.insert(self._values.pop(self._first))
                 self._set_first()
         
-            elif self._values[self._first] <= key:
+            elif self._values[self._first] >= key:
                 target2.insert(self._values.pop(self._first))
                 self._set_first()
 

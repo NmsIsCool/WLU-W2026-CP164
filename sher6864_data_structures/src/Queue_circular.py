@@ -5,7 +5,7 @@ Array based implementation of the circular queue
 Author:  Jack Sherwood
 ID:             1691168645
 Email:        sher6864@mylaurier.ca
-__updated__ = Jan 31, 2026
+__updated__ = 'Jan 31, 2026'
 -------------------------------------------------------
 """
 # pylint: disable=protected-access

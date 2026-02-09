@@ -35,22 +35,19 @@ def stack_combine(source1, source2):
     """
     
     target=Stack()
-    temp1=Stack()
-    temp2=Stack()
+    while len(source1._values) > 0 and len(source2._values) >0:
+        target._values.append(source1._values.pop())
+        target._values.append(source2._values.pop())
+        
+    while len(source1._values)>0:
+        target._values.append(source1._values.pop())
     
-    while not source1.is_empty():
-        temp1.push(source1.pop())
-    while not source2.is_empty():
-        temp2.push(source2.pop())
-
+    while len(source2._values)>0:
+        target._values.append(source2._values.pop())
+        
+    return target  
     
-    while not temp1.is_empty() or not temp2.is_empty():
-        if not temp1.is_empty():
-            target.push(temp1.pop())
-        if not temp2.is_empty():
-            target.push(temp2.pop())
-            
-    return target
+        
         
 def is_palindrome_stack(string):
     """
@@ -125,11 +122,7 @@ def postfix(string):
                 output=ls/rs
             stack.push(output)
     
-    answer=stack.pop()
-    return answer
-        
-        
-    
+    answer=float(stack.pop())
     return answer
             
 def stack_maze(maze):
@@ -152,31 +145,48 @@ def stack_maze(maze):
     """
     
     path=[]
-    
+    seen=[]
     stack=Stack()
-    start_node=maze["Start"]
     
-    for item in reversed(start_node):
-        stack.push(item)
+    stack.push(maze["Start"])
     
-    node=None
-    found_exit=False
+    found_flag=False
+    while not stack.is_empty() and not found_flag:
     
-    while not stack.is_empty() and not found_exit:
-        node=stack.pop()
-        path.append(node)
-        
-        if node == "X":
-            found_exit=True
+        elements=stack.pop()
+        print(stack)
+        current=elements[0]
+        print(current)
+        if not path or current in maze[path[-1]]:
+            path.append(current)
         else:
-            nodes_i_can_see=maze[node]
-            for item in reversed(nodes_i_can_see):
-                stack.push(item)
-    
-    if not found_exit:
-        path=None
+            while path and current not in maze[path[-1]]:
+                path.pop()
+            path.append(current)
+                    
+        if current=="X":
+            found_flag=True
+        
+        if not found_flag:
+            if not current in seen:
+                seen.append(current)
+                
+            neighbors=maze[current]
+            
+            for i in range(len(neighbors)-1,-1,-1):
+                if neighbors[i] not in seen:
+                    stack.push(neighbors[i])
     
     return path
+        
+        
+        
+        
+        
+        
+        
+    
+    
 
 def reroute(opstring, values_in):
     """
@@ -200,7 +210,9 @@ def reroute(opstring, values_in):
     incrementer=0
     values_out=[]
     is_valid=True
-    for char in opstring:
+    i=0
+    while i < len(opstring) and is_valid:
+        char=opstring[i]
         if char == "S":
             if incrementer>=len(values_in):
                 is_valid=False
@@ -213,7 +225,7 @@ def reroute(opstring, values_in):
                 is_valid=False
             else:
                 values_out.append(stack.pop())
-    
+        i+=1
     if not is_valid:
         values_out=None
     

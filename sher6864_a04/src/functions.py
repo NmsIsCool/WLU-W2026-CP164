@@ -68,10 +68,10 @@ def pq_split_key(source, key):
     target2 = PQ()
     
     while not source.is_empty():
-        if source.peek() > key:
+        if source.peek() < key:
             target1.insert(source.remove())
         
-        elif source.peek() <= key:
+        elif source.peek() >= key:
             target2.insert(source.remove())
         
     return target1, target2

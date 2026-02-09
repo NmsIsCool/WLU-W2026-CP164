@@ -19,23 +19,15 @@ stack1=Stack()
 stack2=Stack()
 
 #Arrays entered bottom -> top
-nums1=[8,12,8,5]
-nums2=[14,9,7,1,6,3]
-temp_arr=[]
-out_arr=[]
+nums1=[11,33]
+nums2=[22,44]
 
 array_to_stack(stack1, nums1)
 array_to_stack(stack2, nums2)
 
 target_stack.combine(stack1, stack2)
 
-stack_to_array(deepcopy(target_stack),temp_arr)
+print(target_stack)
 
-while temp_arr:
-    out_arr.append(temp_arr.pop())
-
-print("Combined Stack: Top-> Bottom")
-for i in range(len(out_arr)):
-    print(out_arr[i])
     
     
