@@ -178,15 +178,6 @@ def stack_maze(maze):
                     stack.push(neighbors[i])
     
     return path
-        
-        
-        
-        
-        
-        
-        
-    
-    
 
 def reroute(opstring, values_in):
     """
