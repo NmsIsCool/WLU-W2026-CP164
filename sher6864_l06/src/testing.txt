@@ -5,32 +5,114 @@ Lab 5 Testing
 Author:  Jack Sherwood
 ID:      169116864
 Email:   sher6864@mylaurier.ca
-Version: 2025-02-09
+Version: 2025-02-13
 -------------------------------------------------------
 """
 -------------------------------------------------------
 t01
 -------------------------------------------------------
-
--------------------------------------------------------
-t02
--------------------------------------------------------
-
--------------------------------------------------------
-t03
--------------------------------------------------------
-
--------------------------------------------------------
-t04
--------------------------------------------------------
-
--------------------------------------------------------
-t05
--------------------------------------------------------
-
--------------------------------------------------------
-t06
--------------------------------------------------------
+Contents of foods_list:
+Food                                Origin       Vegetarian Calories
+----------------------------------- ------------ ---------- --------
+BBQ Pork                            Chinese           False      920
+Beef with Green Pepper              Chinese           False      251
+Butter Chicken                      Indian            False      490
+Canada Goose Chili                  Canadian          False      199
+Canuck Burger                       Canadian          False     7500
+Chamuco                             Mexican            True      150
+Chicken Chow Mein                   Chinese           False      178
+Chicken Kabob                       Indian            False      167
+Chicken Wings                       American          False      298
+Chip Butty                          English            True      956
+Chirashi Don                        Japanese          False      600
+Crepe                               Italian            True      186
+Diet Free-Range Gluten-free Water   American           True        0
+Fettuccine                          Italian           False      266
+Fricot                              Canadian          False      360
+Fried Rice                          Chinese           False      425
+General Tao Chicken                 Chinese           False      850
+Greek Salad                         Greek              True      185
+Grilled Salmon                      Canadian          False      511
+Hokey Pokey Ice Cream               New Zealand        True      106
+Kung Pao Chicken                    Chinese           False      229
+Lasagna                             Italian           False      135
+Lemon Chicken                       Chinese           False      226
+Moo Goo Guy Pan                     Chinese           False      272
+Natto                               Japanese           True      212
+Orange Chicken                      Chinese           False      800
+Panzerotti                          Italian           False      770
+Pavlova                             New Zealand        True      272
+Pepperoni Pizza                     Italian           False      713
+Poutine                             Canadian          False      710
+Ravioli                             Italian           False      246
+Shark Fin Soup                      Chinese           False       46
+Shortbread                          Scottish           True      502
+Spanakopita                         Greek              True      260
+Spicy Vegetable Moo Shu             Chinese            True      140
+Spring Rolls                        Chinese            True      200
+Sweet and Sour Pork                 Chinese           False      231
+Szechuan Shrimp                     Chinese           False      516
+Teppanyaki                          Japanese          False      200
+Teriyaki                            Japanese          False      233
+Turducken                           American          False    12240
+Vegetable Alicha                    Ethiopian          True      138
+Vegetables with Cashew Nuts         Chinese            True      143
+Is lst empty?
+lst.is_empty() -> False
+Testing lst.insert() with source[0] at index 0:
+lst[0] -> Name:       Lasagna
+Origin:     Italian
+Vegetarian: False
+Calories:   135
+---------
+Testing lst.append() with source[1]
+lst[1] -> Name:       Butter Chicken
+Origin:     Indian
+Vegetarian: False
+Calories:   490
+---------
+Testing lst.remove() with key 'Butter Chicken':
+new length of lst: 1
+lst[0] -> Name:       Lasagna
+Origin:     Italian
+Vegetarian: False
+Calories:   135
+---------
+Loading 'source' into lst: 
+New length of lst: 
+new length of lst: 44
+---------
+Testing lst.index() with key 'Pavlova'
+lst.index('Pavlova') -> 30
+---------
+Testing lst.find() with key 'Crepe'
+Found item: 
+Name:       Crepe
+Origin:     Italian
+Vegetarian: True
+Calories:   186
+---------
+Testing <<ravioli in lst>> (__contains__):
+ravlioli in lst -> True
+---------
+Testing lst.count() with key 'Lasagna'
+Count of 'Lasagna' -> 2
+---------
+Testing lst.max()
+Max value in lst -> 
+Name:       Vegetables with Cashew Nuts
+Origin:     Chinese
+Vegetarian: True
+Calories:   143
+---------
+Testing lst.min()
+Min value in lst -> 
+Name:       BBQ Pork
+Origin:     Chinese
+Vegetarian: False
+Calories:   920
+---------
+Tests Complete!
 
 -------------------------------------------------------
 

@@ -3,6 +3,7 @@
 	<name>sher6864_l06</name>
 	<comment></comment>
 	<projects>
+		<project>sher6864_data_structures</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
