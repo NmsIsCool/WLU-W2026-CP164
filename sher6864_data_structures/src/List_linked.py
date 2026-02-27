@@ -122,6 +122,30 @@ class List:
         self._count+=1
         
         return
+    def _append(self, value):
+        """
+        ---------------------------------------------------------
+        Helper method to add a copy of value to the end of the List.
+        Use: self._append(value)
+        -------------------------------------------------------
+        Parameters:
+            value - a data element (?)
+        Returns:
+            None
+        -------------------------------------------------------
+        """
+        # Create the new node.
+        node = _List_Node(value, None)
+
+        if self._front is None:
+            # list is empty - update the front of the List.
+            self._front = node
+        else:
+            self._rear._next = node
+        # Update the rear of the List.
+        self._rear = node
+        self._count += 1
+        return
 
     def insert(self, i, value):
         """
@@ -251,7 +275,10 @@ class List:
         assert self._front is not None, "Cannot remove from an empty list"
 
         # your code here
-        return
+        value=self._front._value
+        self._front=self._front._next
+        self._count -=1
+        return value
 
     def remove_many(self, key):
         """
@@ -500,6 +527,17 @@ class List:
         -------------------------------------------------------
         """
         # your code here
+        self._rear = self._front
+        previous = None
+        current = self._front
+
+        while current is not None:
+            temp = current._next
+            current._next = previous
+            previous = current
+            current = temp
+
+        self._front = previous
         return
 
     def reverse_r(self):
@@ -515,7 +553,24 @@ class List:
         -------------------------------------------------------
         """
         # your code here
+        if self._front is not None and self._front._next is not None:
+            old_front=self._front
+            self._front = self._reverse_r_aux(self._front)
+            self._rear=old_front
+            self._rear._next=None
         return
+    
+    def _reverse_r_aux(self, current):
+        new_front = current
+        
+        if current is not None and current._next is not None:
+            rest=self._reverse_r_aux(current._next)
+            current._next._next=current
+            current._next = None
+            new_front=rest
+        
+        return new_front
+            
 
     def clean(self):
         """
@@ -629,8 +684,35 @@ class List:
         """
         # your code here
         return
+    
+    def is_identical(self, target):
+        """
+        ---------------------------------------------------------
+        Determines whether two lists are identical.
+        (iterative version)
+        Use: b = source.is_identical(target)
+        -------------------------------------------------------
+        Parameters:
+            target - another list (List)
+        Returns:
+            identical - True if this list contains the same values as
+                target in the same order, otherwise False. (bool)
+        -------------------------------------------------------
+        """
+        if self._count != target._count:
+            identical = False
+        else:
+            source_node = self._front
+            target_node = target._front
 
-    def identical_r(self, other):
+            while source_node is not None and source_node._value == target_node._value:
+                source_node = source_node._next
+                target_node = target_node._next
+
+            identical = source_node is None
+        return identical
+
+    def is_identical_r(self, other):
         """
         ---------------------------------------------------------
         Determines whether two lists are identical. 
@@ -645,7 +727,22 @@ class List:
         -------------------------------------------------------
         """
         # your code here
-        return
+        if self._count != other._count:
+            identical=False
+        else:
+            identical=self._identical_r_aux(self._front, other._front)
+        return identical
+    
+    def _identical_r_aux(self, current, o_current):
+        if current is None and o_current is None:
+            identical=True
+        elif current is None or o_current is None:
+            identical=False
+        elif current._value != o_current._value:
+            identical=False
+        else:
+            identical= self._identical_r_aux(current._next, o_current._next)
+        return identical
 
     def split(self):
         """
@@ -665,19 +762,29 @@ class List:
     def split_alt(self):
         """
         -------------------------------------------------------
-        Splits the source list into separate target lists with values 
-        alternating into the targets. At finish source self is empty.
+        Splits the source list into separate target lists with values
+        alternating into the targets. At finish source list is empty.
         Order of source values is preserved.
         (iterative algorithm)
-        Use: target1, target2 = source.split()
+        Use: target1, target2 = source.split_alt()
         -------------------------------------------------------
         Returns:
             target1 - contains alternating values from source (List)
             target2 - contains other alternating values from source (List)
         -------------------------------------------------------
         """
-        # your code here
-        return
+        target1 = List()
+        target2 = List()
+        left = True
+
+        while self._front is not None:
+
+            if left:
+                target1._move_front_to_rear(self)
+            else:
+                target2._move_front_to_rear(self)
+            left = not left
+        return target1, target2
 
     def split_alt_r(self):
         """
@@ -696,7 +803,41 @@ class List:
         -------------------------------------------------------
         """
         # your code here
+        even=List()
+        odd=List()
+        
+        self._split_alt_r_aux(even, odd, True)
+        
+        return even, odd
+    
+    def _split_alt_r_aux(self, e_list, o_list, even_turn):    
+        if self._front is not None:
+            # remove the front node
+            node = self._front
+            self._front = node._next
+            node._next = None
+            self._count -= 1
+    
+            # append to target list
+            target_list = e_list if even_turn else o_list
+            if target_list._front is None:
+                target_list._front = node
+                target_list._rear = node
+            else:
+                target_list._rear._next = node
+                target_list._rear = node
+            target_list._count += 1
+    
+            # recurse on rest, flip the turn
+            self._split_alt_r_aux(e_list, o_list, not even_turn)
+        else:
+            # base case: source is empty
+            self._rear = None
+            self._count = 0
+    
+        # single return at the very end
         return
+                
 
     def _linear_search_r(self, key):
         """
@@ -714,15 +855,47 @@ class List:
             index - index of the node containing key, -1 if key not found (int)
         -------------------------------------------------------
         """
+        
         # your code here
-        return
+        previous=None
+        current=self._front
+        index=0
+        
+        if self._count == 0:
+            previous=None
+            current=None
+            index=-1
+        else:
+            previous, current, index = self._linear_search_r_aux(key, current, previous, index)
+            
+        
+        return previous, current, index
+    
+    def _linear_search_r_aux(self, key, current, previous, index):
+        prev = None
+        curr=None
+        i=-1
+        
+        if current is None:
+            prev=None
+            curr=None
+            i=-1
+        
+        elif current._value == key:
+            prev=previous
+            curr=current
+            i=index
+        else:
+            prev, curr, i = self._linear_search_r_aux(key, current._next, current, index+1)
+        
+        return prev, curr, i
+
 
     def intersection(self, source1, source2):
         """
         -------------------------------------------------------
         Update the current list with values that appear in both
-        source1 and source2. Values do not repeat. source1 and
-        source2 are unchanged.
+        source1 and source2. Values do not repeat.
         (iterative algorithm)
         Use: target.intersection(source1, source2)
         -------------------------------------------------------
@@ -733,8 +906,24 @@ class List:
             None
         -------------------------------------------------------
         """
-        # your code here
+        source1_node = source1._front
+
+        while source1_node is not None:
+            value = source1_node._value
+            _, current, _ = source2._linear_search(value)
+
+            if current is not None:
+                # Value exists in both source lists.
+                _, current, _ = self._linear_search(value)
+
+                if current is None:
+                    # Value does not appear in target list.
+                    self._append(value)
+
+            source1_node = source1_node._next
         return
+    
+    
 
     def intersection_r(self, source1, source2):
         """
@@ -753,7 +942,23 @@ class List:
         -------------------------------------------------------
         """
         # your code here
+        seen=[]
+        s1_current=source1._front
+        self._intersection_r_aux(s1_current, source2, seen)
+
         return
+    
+    def _intersection_r_aux(self, s1_current, source2, seen):
+        
+        if s1_current is not None:
+            prev, curr, ind = source2._linear_search_r(s1_current._value)
+            if ind != -1 and s1_current._value not in seen:
+                self._append(s1_current._value)
+                seen.append(s1_current._value)
+                
+            self._intersection_r_aux(s1_current._next, source2, seen)
+        return
+        
 
     def union(self, source1, source2):
         """
@@ -772,6 +977,28 @@ class List:
         -------------------------------------------------------
         """
         # your code here
+        source1_node = source1._front
+
+        while source1_node is not None:
+            value = source1_node._value
+            _, current, _ = self._linear_search(value)
+
+            if current is None:
+                # Value does not exist in new list.
+                self._append(value)
+            source1_node = source1_node._next
+
+        source2_node = source2._front
+
+        while source2_node is not None:
+            value = source2_node._value
+            _, current, _ = self._linear_search(value)
+
+            if current is None:
+                # Value does not exist in current list.
+                self._append(value)
+
+            source2_node = source2_node._next
         return
 
     def union_r(self, source1, source2):
@@ -791,7 +1018,22 @@ class List:
         -------------------------------------------------------
         """
         # your code here
+        seen=[]
+        s1_current=source1._front
+        s2_current=source2._front
+        self._union_r_aux(s1_current, seen)
+        self._union_r_aux(s2_current, seen)
         return
+    
+    def _union_r_aux(self, current, seen):
+        
+        if current is not None:
+            if current._value not in seen:
+                self._append(current._value)
+                seen.append(current._value)
+            self._union_r_aux(current._next, seen)
+        return
+            
 
     def clean_r(self):
         """
@@ -871,7 +1113,7 @@ class List:
 
     def _move_front_to_front(self, source):
         """
-        -------------------------------------------------------
+        -------------------------------------------------------    
         Moves the front node from the source List to the front
         of the current List. Private helper method.
         Use: self._move_front_to_front(source)
@@ -907,6 +1149,24 @@ class List:
             "Cannot move the front of an empty List"
 
         # your code here
+        
+        node = source._front
+        source._front = node._next         
+        node._next = None                  
+    
+        source._count -= 1                 
+    
+        # append to self
+        if self._front is None:            
+            self._front = node
+        else:
+            current = self._front
+            while current._next is not None:  
+                current = current._next
+            current._next = node
+    
+        self._count += 1                   
+    
         return
 
     def combine(self, source1, source2):
@@ -967,3 +1227,25 @@ class List:
         while current is not None:
             yield current._value
             current = current._next
+    def __str__(self):
+        """
+        USE FOR TESTING ONLY
+        -------------------------------------------------------
+        Generates a string from the list
+        Use: for v in s:
+        -------------------------------------------------------
+        Returns:
+            yields
+            value - the next value in the list (?)
+        -------------------------------------------------------
+        """
+        
+        string="Front -> "
+        current=self._front
+        while current is not None:
+            string+=f"{current._value} -> "
+            current=current._next
+        
+        string+="None"
+        return string
+
