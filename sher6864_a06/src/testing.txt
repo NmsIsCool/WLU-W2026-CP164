@@ -1,0 +1,128 @@
+"""
+-------------------------------------------------------
+Lab/Assignment  Testing
+-------------------------------------------------------
+Author:  Jack Sherwood
+ID:      169116864
+Email:   sher6864@mylaurier.ca
+Version: 2026-02-28
+-------------------------------------------------------
+"""
+-------------------------------------------------------
+t01
+-------------------------------------------------------
+---------------
+Initialising queue1
+Done!
+---------------
+Testing queue1.is_empty()
+queue1.is_empty() -> True
+---------------
+Testing len(queue1)
+len(queue1) -> 0
+---------------
+Testing queue1.insert(1)
+Done!
+---------------
+Testing queue1.peek()
+queue1.peek() -> 1
+---------------
+Deepcopying queue1 to queue2
+Done!
+---------------
+Testing queue1 == queue2
+queue1 == queue2 -> True
+---------------
+Testing queue1.remove()
+queue1.remove() -> 1
+len(queue1) -> 0
+---------------
+nums1: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+nums2: [11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+---------------
+Loading nums1 to queue3 and nums2 to queue4
+Done!
+---------------
+Testing queue1.combine(queue3, queue4)
+queue1: Front > 1 > 11 > 2 > 12 > 3 > 13 > 4 > 14 > 5 > 15 > 6 > 16 > 7 > 17 > 8 > 18 > 9 > 19 > 10 > 20 >  None
+---------------
+Testing queue5, queue6 = queue1.split_alt
+queue5: Front > 1 > 2 > 3 > 4 > 5 > 6 > 7 > 8 > 9 > 10 >  None
+queue6: Front > 11 > 12 > 13 > 14 > 15 > 16 > 17 > 18 > 19 > 20 >  None
+---------------
+
+-------------------------------------------------------
+t02
+-------------------------------------------------------
+---------------
+Initialising queue1
+Done!
+---------------
+Testing queue1.is_empty()
+queue1.is_empty() -> True
+---------------
+Testing len(queue1)
+len(queue1) -> 0
+---------------
+Testing queue1.insert(1)
+Done!
+---------------
+Testing queue1.peek()
+queue1.peek() -> 1
+---------------
+Deepcopying queue1 to queue2
+Done!
+---------------
+Testing queue1 == queue2
+queue1 == queue2 -> False
+---------------
+Testing queue1.remove()
+queue1.remove() -> 1
+len(queue1) -> 0
+---------------
+nums1: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+nums2: [11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+---------------
+Loading nums1 to queue3 and nums2 to queue4
+Done!
+---------------
+Testing queue1.combine(queue3, queue4)
+queue1: Front (highest prio) > 1 > 2 > 3 > 4 > 5 > 6 > 7 > 8 > 9 > 10 > 11 > 12 > 13 > 14 > 15 > 16 > 17 > 18 > 19 > 20 >  None
+---------------
+Testing queue5, queue6 = queue1.split_alt
+queue5: Front (highest prio) > 1 > 3 > 5 > 7 > 9 > 11 > 13 > 15 > 17 > 19 >  None
+queue6: Front (highest prio) > 2 > 4 > 6 > 8 > 10 > 12 > 14 > 16 > 18 > 20 >  None
+---------------
+Testing secret_queue.split_key(5) with a secret queue that is a copy of queue 1 before split_alt. Splitting secret_queue to queue7 and queue8
+queue7: Front (highest prio) > 1 > 2 > 3 > 4 >  None
+queue8: Front (highest prio) > 5 > 6 > 7 > 8 > 9 > 10 > 11 > 12 > 13 > 14 > 15 > 16 > 17 > 18 > 19 > 20 >  None
+
+-------------------------------------------------------
+t03
+-------------------------------------------------------
+Initialising dq1=Deque()
+Done!
+---------------
+Testing dq1.is_empty()
+dq1.is_empty() -> True
+---------------
+Testing len(dq1)
+len(dq1) -> 0
+---------------
+Deepcopying dq1 to dq2
+Done!
+---------------
+Testing dq1 == dq2
+dq1 == dq2 -> True
+---------------
+Testing dq1.insert_front(1) & dq1.insert_rear(2) & dq1.peek_front() & dq1.peek_rear()
+dq1.peek_front() -> 1
+dq1.peek_rear() -> 2
+---------------
+Testing dq1.remove_front() & dq1.remove_rear()
+dq1.remove_front() -> 1
+dq1.remove_rear() -> 2
+---------------
+-------------------------------------------------------
+
+
