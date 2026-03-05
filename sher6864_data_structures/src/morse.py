@@ -268,10 +268,10 @@ def fill_letter_bst(bst, values):
     """
 
     # Your code here
-    values_converted = []
-    for i in range(values):
-        values_converted.append(ByLetter(values[i]))        
-
+    for i in range(len(values)):
+        letter, code = values[i]
+        obj = ByLetter(letter, code)
+        bst.insert(obj)
     return
 
 
@@ -291,6 +291,10 @@ def fill_code_bst(bst, values):
     """
 
     # Your code here
+    for i in range(len(values)):
+        letter, code = values[i]
+        obj=ByCode(letter, code)
+        bst.insert(obj)
 
     return
 
@@ -310,8 +314,25 @@ def encode_morse(bst, text):
     """
 
     # Your code here
-
-    return
+    
+    #clean input
+    cleaned_string = ""
+    for char in text:
+        if char.isalpha():
+            cleaned_string+=char.upper()
+        elif char.isspace():
+            cleaned_string+=char
+    
+    #encode string
+    result=""
+    for char in cleaned_string:
+        if char.isalpha():
+            temp=bst.retrieve(ByLetter(char, ""))
+            result+=temp.code+" "
+        elif char.isspace():
+            result+="\n"
+            
+    return result
 
 
 def decode_morse(bst, code):
@@ -329,5 +350,19 @@ def decode_morse(bst, code):
     """
 
     # Your code here
-
-    return
+    words = code.split("\n")
+    
+    decoded_words=[]
+    for word in words:
+        letters=word.split()
+        decoded_word = ""
+        for char in letters:
+            temp = bst.retrieve(ByCode("", char))
+            decoded_word += temp.letter
+        decoded_words.append(decoded_word)
+    
+    result=""
+    for word in decoded_words:
+        result+=f"{word} "
+        
+    return result

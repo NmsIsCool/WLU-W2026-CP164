@@ -234,25 +234,34 @@ class BST:
             # Replace this node with another node.
             if node._left is None and node._right is None:
                 # node has no children.
-                pass
-                # your code here
                 
+                # your code here
+                value = node._value
+                node = None
 
             elif node._left is None:
                 # node has no left child.
-                pass
                 # your code here
+                value = node._value
+                node = node._right
+                
 
             elif node._right is None:
                 # node has no right child.
-                pass
                 # your code here
+                value=node._value
+                node = node._left
 
             else:
                 # Node has two children
-                pass
                 # your code here
-
+                node._left, repl_node = self._delete_node_left(node._left)
+                repl_node._left = node._left
+                repl_node._right = node._right
+                
+                value = node._value
+                node = repl_node
+                
         if node is not None and value is not None:
             # If the value was found, update the ancestor heights.
             node._update_height()
@@ -275,8 +284,15 @@ class BST:
         """
 
         # your code here
-
-        return 
+        repl_node=None
+        
+        if parent._right is None:
+            repl_node = parent
+            new_sub = parent._left
+        else:
+            parent._right, repl_node = self._delete_node_left(parent._right)
+            new_sub = parent
+        return new_sub, repl_node
 
     def __contains__(self, key):
         """
