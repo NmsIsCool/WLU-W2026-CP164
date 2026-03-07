@@ -276,8 +276,13 @@ class List:
 
         # your code here
         value=self._front._value
+        
         self._front=self._front._next
         self._count -=1
+        
+        if self._front is None:
+            self._rear = None
+        
         return value
 
     def remove_many(self, key):
@@ -293,6 +298,27 @@ class List:
         -------------------------------------------------------
         """
         # your code here
+        curr = self._front
+        prev=None
+        while curr is not None:
+            if curr._value == key:
+                
+                self._count -=1
+                
+                if prev is None:
+                    self._front = curr._next
+                else:
+                    prev._next=curr._next
+                
+                if curr == self._rear:
+                    self._rear = prev
+                
+                curr=curr._next
+                
+            else:
+                prev=curr
+                curr=curr._next
+                
         return
 
     def find(self, key):
@@ -585,6 +611,24 @@ class List:
         -------------------------------------------------------
         """
         # your code here
+        
+        seen = []
+        curr=self._front
+        prev=None
+        while curr is not None:
+            if curr._value not in seen:
+                seen.append(curr._value)
+                prev=curr
+                curr=curr._next
+            else:
+                #remove
+                self._count -=1
+                prev._next = curr._next
+                
+                if curr == self._rear:
+                    self._rear = prev
+                curr=curr._next
+      
         return
 
     def pop(self, *args):
@@ -691,7 +735,7 @@ class List:
             t_curr = target._front
             
             while s_curr is not None and equals:
-                if s_curr._value != t_curr:
+                if s_curr._value != t_curr._value:
                     equals = False
                 
                 s_curr=s_curr._next
@@ -772,7 +816,26 @@ class List:
         -------------------------------------------------------
         """
         # your code here
-        return
+        
+        if self._front is None:
+            target1 = List()
+            target2 = List()
+        else:
+        
+            mid = self._count // 2
+            
+            target1=List()
+            count=0
+            while count <= mid:
+                target1._move_front_to_rear(self)
+                count+=1
+                
+            target2=List()
+            while self._count < 0:
+                target2._move_front_to_rear(self)
+        
+        return target1, target2
+            
 
     def split_alt(self):
         """
@@ -1126,26 +1189,6 @@ class List:
         # your code here
         return
 
-    def _move_front_to_front(self, source):
-        """
-        -------------------------------------------------------    
-        Moves the front node from the source List to the front
-        of the current List. Private helper method.
-        Use: self._move_front_to_front(source)
-        -------------------------------------------------------
-        Parameters:
-            source - a non-empty linked List (List)
-        Returns:
-            The current List contains the old front of the source List and
-            its count is updated. The source List front and count are updated.
-        -------------------------------------------------------
-        """
-        assert source._front is not None, \
-            "Cannot move the front of an empty List"
-
-        # your code here
-        return
-
     def _move_front_to_rear(self, source):
         """
         -------------------------------------------------------
@@ -1162,25 +1205,26 @@ class List:
         """
         assert source._front is not None, \
             "Cannot move the front of an empty List"
-
-        # your code here
-        
+    
         node = source._front
-        source._front = node._next         
-        node._next = None                  
+        source._front = node._next
+        node._next = None
     
-        source._count -= 1                 
+        source._count -= 1
     
-        # append to self
-        if self._front is None:            
+        # fix source rear if source becomes empty
+        if source._front is None:
+            source._rear = None
+    
+        # append node to self
+        if self._rear is None:        # empty list
             self._front = node
+            self._rear = node
         else:
-            current = self._front
-            while current._next is not None:  
-                current = current._next
-            current._next = node
+            self._rear._next = node
+            self._rear = node
     
-        self._count += 1                   
+        self._count += 1
     
         return
 
@@ -1202,6 +1246,12 @@ class List:
         -------------------------------------------------------
         """
         # your code here
+        
+        while not source1._count == 0 or not source2._count == 0:
+            if source1._count > 0:
+                self._move_front_to_rear(source1)
+            if source2._count > 0:
+                self._move_front_to_rear(source2)
         return
 
     def combine_r(self, source1, source2):

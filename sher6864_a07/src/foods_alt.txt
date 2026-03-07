@@ -1,0 +1,22 @@
+Beef with Green Pepper|1|False|251
+Sweet and Sour Pork|1|False|231
+Szechuan Shrimp|1|False|516
+Poutine|0|False|710
+Teppanyaki|6|False|200
+Greek Salad|5|True|185
+Fettuccine|7|False|266
+Teriyaki|6|False|233
+Shortbread|9|True|502
+Pavlova|10|True|272
+Hokey Pokey Ice Cream|10|True|106
+Fricot|0|False|360
+Chip Butty|11|True|956
+Grilled Salmon|0|False|511
+Ravioli|7|False|246
+Crepe|7|True|186
+Fried Rice|1|False|425
+Pepperoni Pizza|7|False|713
+Chicken Kabob|2|False|167
+Panzerotti|7|False|770
+Spring Rolls|1|True|200
+Chicken Chow Mein|1|False|178

@@ -1,0 +1,224 @@
+"""
+-------------------------------------------------------
+Lab/Assignment  Testing
+-------------------------------------------------------
+Author:  Jack Sherwood
+ID:      169116864
+Email:   sher6864@mylaurier.ca
+Version: 2025-02-05
+-------------------------------------------------------
+"""
+-------------------------------------------------------
+t01
+-------------------------------------------------------
+Testing __eq__ (ls==ls2)
+ls and ls2 are empty
+ls == ls2 -> True
+-----------------------------
+Testing ls.append() with foods_list array...
+Success!
+-----------------------------
+Testing __getitem__ (ls[x])
+ls[5] -> 
+Name:       Chirashi Don
+Origin:     Japanese
+Vegetarian: False
+Calories:   600
+-----------------------------
+Testing ls.prepend() with food object: Chicken Wings
+Success!
+ls[0] -> 
+Name:       Chicken Wings
+Origin:     American
+Vegetarian: False
+Calories:   298
+-----------------------------
+Testing ls.clean() and ls.count() with food object: Chicken Wings
+Appending new chicken wings to ls
+Done!
+ls.count(Chicken_wings_key) -> 2
+Cleaning List...
+Done!
+ls.count(Chicken_wings_key) -> 1
+-----------------------------
+Creating new lists...
+Created new_list, source1, source2
+Loading food items to source1 and source2
+Done!
+Combining source1 and source2 into new_list
+Done!
+Name:       Lasagna
+Origin:     Italian
+Vegetarian: False
+Calories:   135
+----------
+Name:       Beef with Green Pepper
+Origin:     Chinese
+Vegetarian: False
+Calories:   251
+----------
+Name:       Butter Chicken
+Origin:     Indian
+Vegetarian: False
+Calories:   490
+----------
+Name:       Sweet and Sour Pork
+Origin:     Chinese
+Vegetarian: False
+Calories:   231
+----------
+Name:       Moo Goo Guy Pan
+Origin:     Chinese
+Vegetarian: False
+Calories:   272
+----------
+Name:       Szechuan Shrimp
+Origin:     Chinese
+Vegetarian: False
+Calories:   516
+----------
+Name:       Vegetable Alicha
+Origin:     Ethiopian
+Vegetarian: True
+Calories:   138
+----------
+Name:       Poutine
+Origin:     Canadian
+Vegetarian: False
+Calories:   710
+----------
+Name:       Spanakopita
+Origin:     Greek
+Vegetarian: True
+Calories:   260
+----------
+Name:       Teppanyaki
+Origin:     Japanese
+Vegetarian: False
+Calories:   200
+----------
+-----------------------------
+Testing new_list.remove_front()
+new_list[0] -> 
+Name:       Lasagna
+Origin:     Italian
+Vegetarian: False
+Calories:   135
+new_list[0] -> 
+Name:       Beef with Green Pepper
+Origin:     Chinese
+Vegetarian: False
+Calories:   251
+-----------------------------
+Testing new_list.remove_many with several new chicken wings added
+len(new_list) -> 9
+len(new_list) -> 14
+removing chicken_wings_key...
+Done!
+len(new_list) -> 9
+-----------------------------
+Duplicating new_list
+Done!
+target1, target2 = new_list.split()
+Done!
+alt_target1, alt_target2 = copy_list.split(alt)
+Outputting new_list.split():
+TARGET1
+Name:       Beef with Green Pepper
+Origin:     Chinese
+Vegetarian: False
+Calories:   251
+Name:       Butter Chicken
+Origin:     Indian
+Vegetarian: False
+Calories:   490
+Name:       Sweet and Sour Pork
+Origin:     Chinese
+Vegetarian: False
+Calories:   231
+Name:       Moo Goo Guy Pan
+Origin:     Chinese
+Vegetarian: False
+Calories:   272
+Name:       Szechuan Shrimp
+Origin:     Chinese
+Vegetarian: False
+Calories:   516
+-----------------------------
+TARGET2
+Front -> None
+-----------------------------
+Outputting copy_list.split_alt()
+ALT_TARGET1
+Name:       Beef with Green Pepper
+Origin:     Chinese
+Vegetarian: False
+Calories:   251
+Name:       Sweet and Sour Pork
+Origin:     Chinese
+Vegetarian: False
+Calories:   231
+Name:       Szechuan Shrimp
+Origin:     Chinese
+Vegetarian: False
+Calories:   516
+Name:       Poutine
+Origin:     Canadian
+Vegetarian: False
+Calories:   710
+Name:       Teppanyaki
+Origin:     Japanese
+Vegetarian: False
+Calories:   200
+-----------------------------
+ALT_TARGET2
+Front -> Name:       Butter Chicken
+Origin:     Indian
+Vegetarian: False
+Calories:   490 -> Name:       Moo Goo Guy Pan
+Origin:     Chinese
+Vegetarian: False
+Calories:   272 -> Name:       Vegetable Alicha
+Origin:     Ethiopian
+Vegetarian: True
+Calories:   138 -> Name:       Spanakopita
+Origin:     Greek
+Vegetarian: True
+Calories:   260 -> None
+-----------------------------
+Testing union_list.union(target1, target2)
+Done!
+UNION_LIST:
+Name:       Beef with Green Pepper
+Origin:     Chinese
+Vegetarian: False
+Calories:   251
+Name:       Butter Chicken
+Origin:     Indian
+Vegetarian: False
+Calories:   490
+Name:       Sweet and Sour Pork
+Origin:     Chinese
+Vegetarian: False
+Calories:   231
+Name:       Moo Goo Guy Pan
+Origin:     Chinese
+Vegetarian: False
+Calories:   272
+Name:       Szechuan Shrimp
+Origin:     Chinese
+Vegetarian: False
+Calories:   516
+-----------------------------
+Testing intersect_list.intersection(alt_target1, alt_target2
+Done!
+INTERSECT_LIST:
+0
+-----------------------------
+
+-------------------------------------------------------
+t02
+-------------------------------------------------------
+
+-------------------------------------------------------
+
