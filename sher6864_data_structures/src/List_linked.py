@@ -60,7 +60,7 @@ class List:
         -------------------------------------------------------
         """
         # your code here
-        return
+        return self._front is None
 
     def __len__(self):
         """
@@ -73,7 +73,7 @@ class List:
         -------------------------------------------------------
         """
         # your code here
-        return
+        return self._count
 
     def prepend(self, value):
         """
@@ -683,7 +683,22 @@ class List:
         -------------------------------------------------------
         """
         # your code here
-        return
+        equals=True
+        if self._count != target._count:
+            equals=False
+        else:
+            s_curr = self._front
+            t_curr = target._front
+            
+            while s_curr is not None and equals:
+                if s_curr._value != t_curr:
+                    equals = False
+                
+                s_curr=s_curr._next
+                t_curr=t_curr._next
+        
+        
+        return equals
     
     def is_identical(self, target):
         """
