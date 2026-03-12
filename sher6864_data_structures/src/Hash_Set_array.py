@@ -27,7 +27,7 @@ class Hash_Set:
     """
     _LOAD_FACTOR = 20
 
-    def __init__(self, capacity):
+    def __init__(self, capacity, load_factor=_LOAD_FACTOR):
         """
         -------------------------------------------------------
         Initializes an empty Hash_Set of size capacity.
@@ -39,6 +39,7 @@ class Hash_Set:
             A new Hash_Set object (Hash_Set)
         -------------------------------------------------------
         """
+        self._load_factor = load_factor
         self._capacity = capacity
         self._table = []
         self._count = 0
@@ -115,7 +116,24 @@ class Hash_Set:
         -------------------------------------------------------
         """
         # your code here
-        return
+        
+        load_cap=self._capacity * self._load_factor
+        
+        h=hash(value)
+        slot = h % self._capacity
+        target_list = self._table[slot]
+        
+        if value in target_list:
+            inserted=False
+        else:
+            target_list.append(value)
+            self._count+=1
+            inserted=True
+        
+        if self._count > load_cap:
+            self._rehash()
+        
+        return inserted
 
 
     def find(self, key):
@@ -147,7 +165,18 @@ class Hash_Set:
         -------------------------------------------------------
         """
         # your code here
-        return
+        
+        h = hash(key)
+        slot=h % self._capacity
+        target_list = self._table[slot]
+        
+        if key in target_list:
+            value = target_list.remove(key)
+            self._count -= 1
+        else:
+            value=None
+
+        return value
 
 
     def _rehash(self):
@@ -162,6 +191,20 @@ class Hash_Set:
         -------------------------------------------------------
         """
         # your code here
+        
+        old_table = self._table
+        old_cap = self._capacity
+        
+        self._capacity = (2*old_cap) + 1
+        
+        self._table = [List() for _ in range(self._capacity)]
+        
+        self._count = 0
+        
+        for slot_list in old_table:
+            for value in slot_list:
+                self.insert(value)
+        
         return
 
 
@@ -198,6 +241,19 @@ class Hash_Set:
         -------------------------------------------------------
         """
         # your code here
+        
+        print(f"{self._capacity} slots\n")
+        print("========================================")
+        
+        slot_counter=0
+        for slot in self._table:
+            print(f"Slot {slot_counter}")
+            print("")
+            for element in slot:
+                print(element)
+                print("")
+            slot_counter+=1
+
         return
 
 
