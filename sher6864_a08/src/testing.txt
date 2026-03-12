@@ -1,0 +1,92 @@
+"""
+-------------------------------------------------------
+Lab 5 Testing
+-------------------------------------------------------
+Author:  Jack Sherwood
+ID:      169116864
+Email:   sher6864@mylaurier.ca
+Version: 2025-03-11
+-------------------------------------------------------
+"""
+-------------------------------------------------------
+t01
+-------------------------------------------------------
+Initializing bst & bst2
+Done!
+arr: [1, 10, 2, 9, 3, 8, 4, 7, 5, 6]
+Loaded arr into bst and bst2
+Testing bst==bst2
+bst==bst2 -> True
+Testing bst.is_balanced()
+bst.is_balanced() -> False
+Testing bst.is_valid()
+bst.is_valid() -> True
+Testing bst.min()
+bst.min() -> 1
+Testing bst.node_counts
+bst.node_counts -> Leaf: 1, One Child: 9, Two Children 0
+Testing bst.inorder()
+bst.inorder() -> [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+Testing bst.preorder()
+bst.preorder() -> [1, 10, 2, 9, 3, 8, 4, 7, 5, 6]
+Testing bst.postorder()
+bst.postorder() -> [6, 5, 7, 4, 8, 3, 9, 2, 10, 1]
+Testing bst.levelorder()
+bst.levelorder() -> [1, 10, 2, 9, 3, 8, 4, 7, 5, 6]
+Testing bst.remove(8)
+bst.remove(8) -> 8
+New BST: [1, 2, 3, 4, 5, 6, 7, 9, 10]
+
+-------------------------------------------------------
+t02
+-------------------------------------------------------
+Comparing by order: ABCDEFGHIJKLMNOPQRSTUVWXYZ
+Total Comparisons: 24,329,396
+------------------------------------------------------------
+Comparing by order: MFTCJPWADHKNRUYBEIGLOQSVXZ
+Total Comparisons: 7,633,332
+------------------------------------------------------------
+Comparing by order: ETAOINSHRDLUCMPFYWGBVKJXZQ
+Total Comparisons: 7,015,716
+
+-------------------------------------------------------
+t03
+-------------------------------------------------------
+Letter Count/Percent Table
+
+Total Count: 1,009,510
+
+Letter  Count       %
+---------------------
+    A  80,594   7.98%
+    B  17,018   1.69%
+    C  35,365   3.50%
+    D  37,400   3.70%
+    E 133,050  13.18%
+    F  28,024   2.78%
+    G  18,383   1.82%
+    H  50,361   4.99%
+    I  75,010   7.43%
+    J     687   0.07%
+    K   3,708   0.37%
+    L  42,326   4.19%
+    M  25,356   2.51%
+    N  72,360   7.17%
+    O  72,839   7.22%
+    P  19,126   1.89%
+    Q     925   0.09%
+    R  63,281   6.27%
+    S  69,419   6.88%
+    T  90,909   9.01%
+    U  25,796   2.56%
+    V  11,978   1.19%
+    W  16,173   1.60%
+    X   2,428   0.24%
+    Y  16,525   1.64%
+    Z     469   0.05%
+
+-------------------------------------------------------
+
+
+
+

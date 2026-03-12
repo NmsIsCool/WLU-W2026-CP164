@@ -323,6 +323,7 @@ class BST:
         """
 
         # your code here
+        return self._heigfht
 
 
     def __eq__(self, target):
@@ -342,8 +343,22 @@ class BST:
         """
 
         # your code here
+        equals = self._eq_aux(self._root, target._root)
 
-        return
+        return equals
+    
+    def _eq_aux(self, s_node, t_node):
+        #Base case
+        if s_node is None and t_node is None:
+            equals=True
+        elif s_node is None or t_node is None:
+            equals=False
+        elif s_node._value != t_node._value:
+            equals=False
+        elif s_node._value == t_node._value:
+            equals = (self._eq_aux(s_node._left, t_node._left) and self._eq_aux(s_node._right, t_node._right))
+        
+        return equals
 
     def parent(self, key):
         """
@@ -394,6 +409,12 @@ class BST:
         assert self._root is not None, "Cannot find maximum of an empty BST"
 
         # your code here
+        node=self._root
+        while node._right is not None:
+            node=node._right
+        
+        value=deepcopy(node._value)
+        return value
 
 
     def max_r(self):
@@ -425,6 +446,12 @@ class BST:
         assert self._root is not None, "Cannot find minimum of an empty BST"
 
         # your code here
+        node=self._root
+        while node._left is not None:
+            node=node._left
+        
+        value=deepcopy(node._value)
+        return value
 
 
     def min_r(self):
@@ -454,7 +481,21 @@ class BST:
         """
 
         # your code here
-
+        count = self._leaf_count_aux(self._root)
+        return count
+    
+    def _leaf_count_aux(self, node):
+        count = 0
+        if node is not None:
+            
+            if node._left is None and node._right is None:
+                count+=1
+            else:
+                if node._left is not None:
+                    count+=self._leaf_count_aux(node._left)
+                if node._right is not None:
+                    count+=self._leaf_count_aux(node._right)
+        return count
 
     def two_child_count(self):
         """
@@ -468,6 +509,22 @@ class BST:
         """
 
         # your code here
+        count = self._two_child_count_aux(self._root)
+        return count
+        
+    def _two_child_count_aux(self, node):
+        count = 0
+        if node is not None:
+            if node._left is not None and node._right is not None:
+                count+=1
+            
+            if node._left is not None:
+                count+=self._two_child_count_aux(node._left)
+            if node._right is not None:
+                count+=self._two_child_count_aux(node._right)
+        return count
+            
+                
 
 
     def one_child_count(self):
@@ -482,7 +539,19 @@ class BST:
         """
 
         # your code here
-
+        count = self._one_child_count_aux(self._root)
+        return count
+        
+    def _one_child_count_aux(self, node):
+        count = 0
+        if node is not None:
+            if (node._left is not None) ^ (node._right is not None):
+                count+=1
+            if node._left is not None:
+                count+=self._one_child_count_aux(node._left)
+            if node._right is not None:
+                count+=self._one_child_count_aux(node._right)
+        return count
 
     def node_counts(self):
         """
@@ -498,7 +567,11 @@ class BST:
         """
 
         # your code here
-
+        zero = self.leaf_count()
+        one = self.one_child_count()
+        two = self.two_child_count()
+        
+        return zero, one, two
 
     def is_balanced(self):
         """
@@ -513,7 +586,25 @@ class BST:
         """
 
         # your code here
-
+        _, balanced = self._is_balanced_aux(self._root)
+        return balanced
+        
+    def _is_balanced_aux(self, node):
+        node_height = 0
+        node_balanced = True
+        if node is not None:
+            left_height , left_balanced = self._is_balanced_aux(node._left)
+            right_height, right_balanced = self._is_balanced_aux(node._right)
+            
+            if left_height > right_height:
+                node_height = 1+left_height
+            else:
+                node_height = 1+right_height
+                
+            node_balanced = left_balanced and right_balanced and abs(left_height - right_height ) <= 1
+        
+        return node_height, node_balanced
+            
 
     def _node_height(self, node):
         """
@@ -565,8 +656,51 @@ class BST:
         """
 
         # your code here
-
-
+        valid = self._is_valid_aux(self._root)
+        return valid
+    
+    def _is_valid_aux(self, node):
+        
+        valid = True
+        if node is None:
+            valid = True
+        else:
+            if node._left is not None:
+                if node._left._value >= node._value:
+                    valid=False
+                l_valid = self._is_valid_aux(node._left)
+            else:
+                l_valid = True
+            
+            if node._right is not None:
+                if node._right._value <= node._value:
+                    valid=False
+                r_valid = self._is_valid_aux(node._right)
+            else:
+                r_valid=True
+                
+            if node._left is not None:
+                left_height = node._left._height
+            else:
+                left_height=0
+            
+            if node._right is not None:
+                right_height = node._right._height
+            else:
+                right_height=0
+            
+            if left_height > right_height:
+                expected_height = 1 + (left_height)
+            else:
+                expected_height = 1 + (right_height)
+            
+            if node._height != expected_height:
+                valid = False
+        
+            valid = valid and l_valid and r_valid
+   
+        return valid
+                
     def inorder(self):
         """
         -------------------------------------------------------
@@ -579,8 +713,17 @@ class BST:
         """
 
         # your code here
-
-
+        a=self._inorder_aux(self._root)
+        return a
+        
+    def _inorder_aux(self, node):
+        a=[]
+        if node is not None:
+            a+= self._inorder_aux(node._left)
+            a.append(deepcopy(node._value))
+            a+=self._inorder_aux(node._right)
+        return a
+             
     def preorder(self):
         """
         -------------------------------------------------------
@@ -593,6 +736,16 @@ class BST:
         """
 
         # your code here
+        a=self._preorder_aux(self._root)
+        return a
+    
+    def _preorder_aux(self, node):
+        a=[]
+        if node is not None:
+            a.append(deepcopy(node._value))
+            a+= self._preorder_aux(node._left)
+            a+=self._preorder_aux(node._right)
+        return a
 
 
     def postorder(self):
@@ -607,6 +760,18 @@ class BST:
         """
 
         # your code here
+        a=self._postorder_aux(self._root)
+        return a
+    
+    def _postorder_aux(self, node):
+        a=[]
+        if node is not None:
+            a+=self._postorder_aux(node._left)
+            a+=self._postorder_aux(node._right)
+            a.append(deepcopy(node._value))
+            
+        return a
+        
 
 
     def levelorder(self):
@@ -622,7 +787,23 @@ class BST:
         """
 
         # your code here
-
+        if self._root is not None:
+            values=[]
+            queue = [] #"Queue" 
+            
+            queue.append(self._root)
+            
+            while len(queue) > 0:
+                current=queue.pop(0)
+                values.append(deepcopy(current._value))
+                
+                if current._left is not None:
+                    queue.append(current._left)
+                if current._right is not None:
+                    queue.append(current._right)
+        else:
+            values=[]
+        return values
 
     def count(self):
         """
@@ -634,8 +815,28 @@ class BST:
             number - count of nodes in tree (int)
         ----------------------------------------------------------
         """
+        number = self._count_aux(self._root)
+        return number
 
-        # your code here
+    def _count_aux(self, node):
+        """
+        ---------------------------------------------------------
+        Returns the number of nodes in a BST subtree.
+        -------------------------------------------------------
+        Parameters:
+            node - a BST node (_BST_Node)
+        Returns:
+            number - count of nodes in the current subtree (int)
+        ----------------------------------------------------------
+        """
+        if node is None:
+            # Base case: node does not exist
+            number = 0
+        else:
+            # General case: node exists.
+            number = 1 + self._count_aux(node._left) + \
+                self._count_aux(node._right)
+        return number
 
 
     def __iter__(self):
