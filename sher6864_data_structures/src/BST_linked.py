@@ -323,7 +323,7 @@ class BST:
         """
 
         # your code here
-        return self._heigfht
+        return self._height
 
 
     def __eq__(self, target):

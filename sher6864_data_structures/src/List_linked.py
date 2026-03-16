@@ -12,7 +12,6 @@ __updated__ = '2026-02-13'
 from copy import deepcopy
 
 
-
 class _List_Node:
 
     def __init__(self, value, next_):
@@ -695,21 +694,148 @@ class List:
         return value
 
     def _swap(self, pln, prn):
-        """
-        -------------------------------------------------------
-        Swaps the position of two nodes. The nodes in pln.next and prn.next 
-        have been swapped, and all links to them updated.
-        Use: self._swap(pln, prn)
-        -------------------------------------------------------
-        Parameters:
-            pln - node before list node to swap (_List_Node)
-            prn - node before list node to swap (_List_Node)
-        Returns:
-            None
-        -------------------------------------------------------
-        """
-        # your code here
-        return
+            """
+            Version: 2026-03-16
+            -------------------------------------------------------
+            Swaps the position of two nodes. The nodes in pln._next and prn._next
+            have been swapped, and all links to them updated.
+            Use: self._swap(pln, prn)
+            -------------------------------------------------------
+            Parameters:
+                pln - node before list node to swap (_List_Node)
+                prn - node before list node to swap (_List_Node)
+            Returns:
+                None
+            -------------------------------------------------------
+            """
+            if pln is not prn:
+                # Swap only if two nodes are not the same node
+                if pln is None:
+                    # swap front and other - prn is not None
+    
+                    if prn._next is self._rear:
+                        # swap front and rear
+                        new_rear = self._front
+                        new_front = self._rear
+    
+                        if prn is self._front:
+                            # front and rear are adjacent (only 2 nodes)
+                            new_front._next = new_rear
+                        else:
+                            # front and rear are not adjacent
+                            new_front._next = self._front._next
+                            prn._next = new_rear
+    
+                        self._front = new_front
+                        self._rear = new_rear
+                        self._rear._next = None
+                    else:
+                        new_right = self._front
+                        new_front = prn._next
+                        temp = new_front._next
+    
+                        if prn is self._front:
+                            # swapped nodes are adjacent
+                            new_front._next = new_right
+                            new_right._next = temp
+                        else:
+                            new_front._next = new_right._next
+                            new_right._next = temp
+                            prn._next = new_right
+    
+                        self._front = new_front
+    
+                elif prn is None:
+                    # swap front and other - pln is not None
+    
+                    if pln._next is self._rear:
+                        # swap front and rear
+                        new_rear = self._front
+                        new_front = self._rear
+    
+                        if pln is self._front:
+                            # front and rear are adjacent (only 2 nodes)
+                            new_front._next = new_rear
+                        else:
+                            # front and rear are not adjacent
+                            new_front._next = self._front._next
+                            pln._next = new_rear
+    
+                        self._front = new_front
+                        self._rear = new_rear
+                        self._rear._next = None
+                    else:
+                        new_right = self._front
+                        new_front = pln._next
+                        temp = new_front._next
+    
+                        if pln is self._front:
+                            # swapped nodes are adjacent
+                            new_front._next = new_right
+                            new_right._next = temp
+                        else:
+                            new_front._next = new_right._next
+                            new_right._next = temp
+                            pln._next = new_right
+    
+                        self._front = new_front
+                elif pln._next is self._rear:
+                    # swap rear and non-front (handled in front cases)
+                    new_rear = prn._next
+                    new_left = self._rear
+    
+                    if prn._next is pln:
+                        # nodes are adjacent
+                        new_left._next = new_rear
+                        prn._next = new_left
+                    else:
+                        new_left._next = new_rear._next
+                        prn._next = new_left
+                        pln._next = new_rear
+    
+                    self._rear = new_rear
+                    self._rear._next = None
+                elif prn._next is self._rear:
+                    # swap rear and non-front (handled in front cases)
+                    new_rear = pln._next
+                    new_left = self._rear
+    
+                    if pln._next is prn:
+                        # nodes are adjacent
+                        new_left._next = new_rear
+                        pln._next = new_left
+                    else:
+                        new_left._next = new_rear._next
+                        pln._next = new_left
+                        prn._next = new_rear
+    
+                    self._rear = new_rear
+                    self._rear._next = None
+                else:
+                    # swap non-front and non-rear
+                    new_left = prn._next
+                    new_right = pln._next
+    
+                    if pln._next is prn:
+                        # adjacent
+                        temp = new_left._next
+                        new_left._next = new_right
+                        new_right._next = temp
+                        pln._next = new_left
+                    elif prn._next is pln:
+                        # adjacent
+                        temp = new_right._next
+                        new_right._next = new_left
+                        new_left._next = temp
+                        prn._next = new_right
+                    else:
+                        # non-adjacent
+                        temp = new_left._next
+                        new_left._next = new_right._next
+                        new_right._next = temp
+                        prn._next = new_right
+                        pln._next = new_left
+                    return
 
     def __eq__(self, target):
         """
@@ -1313,4 +1439,9 @@ class List:
         
         string+="None"
         return string
+    
+    def clear (self):
+        self._count=0
+        self._front=None
+        self._rear=None
 
