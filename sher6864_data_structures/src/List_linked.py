@@ -1444,4 +1444,18 @@ class List:
         self._count=0
         self._front=None
         self._rear=None
+        
+    def _append_list(self, source):
+        if source._front is not None:
+            
+            if self._front is None:
+                self._front=source._front
+                self._rear=source._rear
+            else:
+                self._rear._next = source._front
+                self._rear=source._rear
+                
+        source.clear()
+        
+        
 

@@ -5,7 +5,7 @@ Lab 9 Testing
 Author:  Jack Sherwood
 ID:      169116864
 Email:   sher6864@mylaurier.ca
-Version: 2025-03-12
+Version: 2025-03-17
 -------------------------------------------------------
 """
 -------------------------------------------------------
@@ -38,7 +38,19 @@ random lists, merge still wins.
 -------------------------------------------------------
 t04
 -------------------------------------------------------
+n:   100       |      Comparisons       | |         Swaps          |
+Algorithm      In Order Reversed   Random In Order Reversed   Random
+-------------- -------- -------- -------- -------- -------- --------
+Bubble Sort          99     5049   484777        0     4950   245188
+Insertion Sort     4950       99   258301      100      100    10000
+Merge Sort          316      356    54180        0        0        0
+Quick Sort         9900     4950    96951        0        0        0
+Selection Sort     4950     4950   495000      100      100    10000
 
+For sorted linked lists, bubble sort works the best. For reverse
+sorted lists, Insertion Sort performs the best. And for random lists,
+which is a more common situation to be in, merge sort has the best
+performance. 
 -------------------------------------------------------
 
 
