@@ -654,28 +654,35 @@ class Sorts:
         """
         if not len(a) == 0:
             
+            #Find maximum of array
             maximum=a[0]
             for i in range(len(a)):
                 if a[i] >= maximum:
                     maximum=a[i]
             
+            #Compute passes
             if maximum == 0:
                 passes = 1
             else:
                 passes = floor(log10(maximum))+1
+                
             for i in range(passes):
+                #Create buckets
                 buckets = [[] for _ in range(10)]
-    
+                
+                #Load array elements into buckets based on digit
+
                 for num in a:
                     digit = (num // 10 ** i) % 10
                     buckets[digit].append(num)
                 
+                #Extract elements from buckets
                 temp_arr=[]
                 for bucket in buckets:
                     
                     for item in bucket:
                         temp_arr.append(item)
-                
+                #copy data from extracted buckets to original array
                 for j in range(len(a)):
                     a[j]=temp_arr[j]
         return
