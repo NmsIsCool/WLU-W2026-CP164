@@ -11,46 +11,18 @@ Version: 2025-03-18
 -------------------------------------------------------
 t01
 -------------------------------------------------------
-Using array-based list Hash_Set
-
-Total Comparisons: 1,383,903
-Word with maximum comparisons the: 14,842
 
 -------------------------------------------------------
 t02
 -------------------------------------------------------
-Using array-based Sorted List Hash_Set
-
-Total Comparisons: 1,365,869
-Word with maximum comparisons 'the': 24,280
 
 -------------------------------------------------------
 t03
 -------------------------------------------------------
-Using linked BST Hash_Set
-
-Total Comparisons: 1,365,869
-Word with maximum comparisons 'the': 24,280
 
 -------------------------------------------------------
 t04
 -------------------------------------------------------
-Initialised BST 'bst'
-Loaded numbers 1 to 50 into bst
-Testing bst.node_counts()
-bst.node_counts() -> (16, 19, 15)
-
-Testing 45 in bst
-45 in bst -> True
-
-Testing 67 in bst
-67 in bst -> False
-
-Testing bst.parent(42)
-bst.parent(42) -> 41
-
-Testing bst.parent_r(42)
-bst.parent_r(42) -> 41
 
 -------------------------------------------------------
 

@@ -10,6 +10,7 @@ __updated__ = '2026-03-16'
 """
 # Imports
 from BST_linked import BST
+from math import floor, log10
 
 
 class Sorts:
@@ -637,6 +638,47 @@ class Sorts:
             else:
                 found = True
         return mid
+    
+    @staticmethod
+    def radix_sort(a):
+        """
+        -------------------------------------------------------
+        Performs a base 10 radix sort.
+        Use: Sorts.radix_sort(a)
+        -------------------------------------------------------
+        Parameters:
+            a - an array of base 10 integers (list)
+        Returns:
+            None
+        -------------------------------------------------------
+        """
+        if not len(a) == 0:
+            
+            maximum=a[0]
+            for i in range(len(a)):
+                if a[i] >= maximum:
+                    maximum=a[i]
+            
+            if maximum == 0:
+                passes = 1
+            else:
+                passes = floor(log10(maximum))+1
+            for i in range(passes):
+                buckets = [[] for _ in range(10)]
+    
+                for num in a:
+                    digit = (num // 10 ** i) % 10
+                    buckets[digit].append(num)
+                
+                temp_arr=[]
+                for bucket in buckets:
+                    
+                    for item in bucket:
+                        temp_arr.append(item)
+                
+                for j in range(len(a)):
+                    a[j]=temp_arr[j]
+        return
 
     # Sort Utilities
 
