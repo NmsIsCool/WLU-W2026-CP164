@@ -308,6 +308,20 @@ class BST:
         """
 
         # your code here
+        return self._contains_aux(key, self._root)
+        
+    def _contains_aux(self, key, node):
+        if node is None:
+            found = False
+        elif key == node._value:
+            found=True
+        elif key < node._value:
+            found=self._contains_aux(key, node._left)
+        else:
+            found = self._contains_aux(key, node._right)
+        
+        return found
+        
 
 
     def height(self):
@@ -376,6 +390,25 @@ class BST:
 
 
         # your code here
+        is_parent=False
+        value=None
+        curr_node = self._root
+        while curr_node is not None and not is_parent:
+            if curr_node._left is not None and curr_node._left._value == key:
+                value = deepcopy(curr_node._value)
+                is_parent=True
+            elif curr_node._right is not None and curr_node._right._value == key:
+                value = deepcopy(curr_node._value)
+                is_parent=True
+            
+            else:
+                if key < curr_node._value:
+                    curr_node = curr_node._left
+                else:
+                    curr_node = curr_node._right
+        
+        return value               
+            
 
 
     def parent_r(self, key):
@@ -394,6 +427,24 @@ class BST:
 
 
         # your code here
+        value = self._parent_r_aux(key, self._root)
+        return value
+        
+    def _parent_r_aux(self, key, node):
+        
+        if node is None:
+            value = None
+        elif node._left is not None and node._left._value == key:
+            value = deepcopy(node._value)
+        elif node._right is not None and node._right._value == key:
+            value = deepcopy(node._value)
+        else:
+            if key < node._value:
+                value = self._parent_r_aux(key, node._left)
+            elif key > node._value:
+                value = self._parent_r_aux(key, node._right)
+        
+        return value
 
 
     def max(self):
