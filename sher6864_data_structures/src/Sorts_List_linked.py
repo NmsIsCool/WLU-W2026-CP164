@@ -12,6 +12,7 @@ __updated__ = '2026-03-17'
 
 # Imports
 from List_linked import List
+from math import floor, log10
 
 
 class Sorts:
@@ -383,3 +384,65 @@ class Sorts:
             else:
                 equals._move_front_to_rear(source)
         return lesser, equals, greater
+    
+    
+    @staticmethod
+    def radix_sort(a):
+        """
+        -------------------------------------------------------
+        Performs a base 10 radix sort.
+        Use: radix_sort(a)
+        -------------------------------------------------------
+        Parameters:
+            a - a List of base 10 integers (List)
+        Returns:
+            None
+        -------------------------------------------------------
+        """
+        
+        if a._count > 0:
+    
+            # Find maximum
+            maximum = a._front._value
+            curr = a._front
+            while curr is not None:
+                if curr._value > maximum:
+                    maximum = curr._value
+                curr = curr._next
+    
+            # Compute passes
+            if maximum == 0:
+                passes = 1
+            else:
+                passes = floor(log10(maximum)) + 1
+    
+            for i in range(passes):
+    
+                # Create buckets as a Python list
+                buckets = [List() for _ in range(10)]
+    
+                # Load elements into buckets
+                while a._count > 0:
+                    num = a._front._value
+                    digit = (num // (10 ** i)) % 10
+                    buckets[digit]._move_front_to_rear(a)
+    
+                # Rebuild a from buckets
+                for bucket in buckets:
+                    while bucket._count > 0:
+                        a._move_front_to_rear(bucket)
+                    
+                    
+                    
+                
+                    
+                        
+                    
+                    
+            
+            
+            
+            
+            
+            
+            
