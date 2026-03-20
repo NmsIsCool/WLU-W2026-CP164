@@ -335,3 +335,27 @@ class Deque:
         while current is not None:
             yield current._value
             current = current._next
+            
+    def __str__(self):
+        """
+        USE FOR TESTING ONLY
+        -------------------------------------------------------
+        Generates a string of the contents of the deque
+        Use: str(dq)
+        -------------------------------------------------------
+        Returns:
+            string - string of values in deque
+        -------------------------------------------------------
+        """
+        
+        string="None <-> "
+        curr = self._front
+        while curr is not None:
+            sub_str=f"{curr._value} <-> "
+            string+=sub_str
+            curr=curr._next
+        
+        string+="None"
+        return string
+            
+            

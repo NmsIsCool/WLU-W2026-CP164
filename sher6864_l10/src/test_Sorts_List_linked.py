@@ -113,16 +113,16 @@ def test_sort(title, func):
     # your code here
     Sorts.swaps = 0
     Number.comparisons = 0
-    sorted_arr = create_sorted()
-    func(sorted_arr)
+    sorted_l = create_sorted()
+    func(sorted_l)
     comps_inord = Number.comparisons
     swaps_inord = Sorts.swaps
 
     # REVERSED ARRAY
     Sorts.swaps = 0
     Number.comparisons = 0
-    rev_arr = create_reversed()
-    func(rev_arr)
+    rev_l = create_reversed()
+    func(rev_l)
     comps_rev = Number.comparisons
     swaps_rev = Sorts.swaps
 

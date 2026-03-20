@@ -431,6 +431,33 @@ class Sorts:
                 for bucket in buckets:
                     while bucket._count > 0:
                         a._move_front_to_rear(bucket)
+        return
+    
+    @staticmethod
+    def gnome_sort(a):
+        """
+        -------------------------------------------------------
+        Sorts a Deque using the Gnome Sort algorithm.
+        Use: gnome_sort(a)
+        -------------------------------------------------------
+        Parameters:
+            a - a linked structure of comparable elements (Deque)
+        Returns:
+            None
+        -------------------------------------------------------
+        """
+        
+        curr = a._front
+        while curr is not None:
+            if curr == a._front:
+                curr=curr._next
+            elif curr._prev._value <= curr._value:
+                curr=curr._next
+            else:
+                a._swap(curr, curr._prev)
+        
+        return
+                
                     
                     
                     
