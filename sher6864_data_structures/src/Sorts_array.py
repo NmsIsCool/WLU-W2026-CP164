@@ -679,7 +679,75 @@ class Sorts:
                 for j in range(len(a)):
                     a[j]=temp_arr[j]
         return
+    
+    @staticmethod
+    def radix_sort_obj(a):
+        """
+        -------------------------------------------------------
+        Performs a base 10 radix sort on Number objects.
+        Use: Sorts.radix_sort_obj(a)
+        -------------------------------------------------------
+        Parameters:
+            a - an array of Number objects (list)
+        Returns:
+            None
+        -------------------------------------------------------
+        """
+        if len(a) != 0:
+    
+            maximum = a[0]._value
+            for i in range(len(a)):
+                if a[i]._value > maximum:
+                    maximum = a[i]._value
+    
+            if maximum == 0:
+                passes = 1
+            else:
+                passes = floor(log10(maximum)) + 1
+    
+            for i in range(passes):
+                buckets = [[] for _ in range(10)]
+    
+                for num in a:
+                    digit = (num._value // (10 ** i)) % 10
+                    buckets[digit].append(num)
+    
+                temp_arr = []
+                for bucket in buckets:
+                    for item in bucket:
+                        temp_arr.append(item)
+    
+                for j in range(len(a)):
+                    a[j] = temp_arr[j]
+    
+        return
+    
+    
 
+    @staticmethod
+    def gnome_sort(a):
+        """
+        -------------------------------------------------------
+        Sorts an array using the Gnome Sort algorithm.
+        Use: gnome_sort(a)
+        -------------------------------------------------------
+        Parameters:
+            a - an array of comparable elements (list)
+        Returns:
+            None
+        -------------------------------------------------------
+        """
+        i=1
+        while i<len(a):
+            if i == 0:
+                i+=1
+            elif a[i-1] <= a[i]:
+                i+=1
+            else:
+                Sorts._swap(a, i, i-1)
+                i-=1
+        return
+                
     # Sort Utilities
 
     @staticmethod

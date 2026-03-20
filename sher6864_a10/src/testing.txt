@@ -1,6 +1,6 @@
 """
 -------------------------------------------------------
-Assignment 9 Testing
+Assignment 10 Testing
 -------------------------------------------------------
 Author:  Jack Sherwood
 ID:      169116864
@@ -11,6 +11,17 @@ Version: 2025-03-18
 -------------------------------------------------------
 t01
 -------------------------------------------------------
+Before:
+[605, 586, 81, 286, 500, 615, 851, 668, 534, 739, 578, 529, 118, 657, 326, 167, 370, 997, 610, 516]
+After:
+[81, 118, 167, 286, 326, 370, 500, 516, 529, 534, 578, 586, 605, 610, 615, 657, 668, 739, 851, 997]
+is sorted? -> True
+n:   100       |      Comparisons       | |         Swaps          |
+Algorithm      In Order Reversed   Random In Order Reversed   Random
+-------------- -------- -------- -------- -------- -------- --------
+Radix Sort            0        0        0        0        0        0
+Insertion Sort       99     4950   252274        0     1683    82545
+Bubble Sort          99     4950   475170        0     4950   245263
 
 -------------------------------------------------------
 t02
@@ -19,6 +30,22 @@ t02
 -------------------------------------------------------
 t03
 -------------------------------------------------------
+Before:
+[115, 749, 124, 998, 768, 418, 850, 833, 335, 539, 944, 163, 9, 747, 767, 512, 648, 606, 58, 920]
+After:
+[9, 58, 115, 124, 163, 335, 418, 512, 539, 606, 648, 747, 749, 767, 768, 833, 850, 920, 944, 998]
+is sorted? -> True
+n:   100       |      Comparisons       | |         Swaps          |
+Algorithm      In Order Reversed   Random In Order Reversed   Random
+-------------- -------- -------- -------- -------- -------- --------
+Gnome Sort           99     9900   503074        0     4950   246798
+Insertion Sort       99     4950   256217        0     1683    83892
+Selection Sort     4950     4950   495000        0       50     9445
+
+Based on comparisons and swaps, Gnome sort has the same inorder
+efficiencies as Insertion and Selection but significantly less
+efficiency in reversed data sets. It also has much less efficiency 
+in random data sets
 
 -------------------------------------------------------
 t04

@@ -30,7 +30,9 @@ SORTS = (
     ('Cocktail Sort', Sorts.cocktail_sort),
     ('Comb Sort', Sorts.comb_sort),
     ('Heap Sort', Sorts.heap_sort),
-    ('Shell Sort', Sorts.shell_sort)
+    ('Shell Sort', Sorts.shell_sort),
+    ('Radix Sort', Sorts.radix_sort_obj),
+    ('Gnome Sort', Sorts.gnome_sort)
 )
 
 
