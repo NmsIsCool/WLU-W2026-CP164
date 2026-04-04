@@ -942,24 +942,20 @@ class List:
         -------------------------------------------------------
         """
         # your code here
+        target1=List()
+        target2=List()
         
-        if self._front is None:
-            target1 = List()
-            target2 = List()
-        else:
-        
-            mid = self._count // 2
+        if self._count != 0:
             
-            target1=List()
-            count=0
-            while count <= mid:
+            midpoint = (self._count+1) // 2
+            counter=0
+            while counter <midpoint:
                 target1._move_front_to_rear(self)
-                count+=1
-                
-            target2=List()
-            while self._count < 0:
+                counter+=1
+            
+            while self._front is not None:
                 target2._move_front_to_rear(self)
-        
+                
         return target1, target2
             
 

@@ -1,11 +1,11 @@
 """
 -------------------------------------------------------
-Program Description
+Sorted Linked List ADT
 -------------------------------------------------------
 Author:  Jack Sherwood
 ID:             1691168645
 Email:        sher6864@mylaurier.ca
-__updated__ = '03-07-2026'
+__updated__ = '2026-04-04'
 -------------------------------------------------------
 """
 
@@ -63,7 +63,7 @@ class Sorted_List:
 
         # your code here
 
-        return self._front == None
+        return self._front is None
 
     def __len__(self):
         """
@@ -96,20 +96,29 @@ class Sorted_List:
         """
 
         # your code here
-        new_node = _SL_Node(value, None)  
-
-        if self._front is None or value < self._front.value:
-            new_node.next = self._front
-            self._front = new_node
-            return
-    
-        current = self._front
-        while current.next is not None and current.next.value <= value:
-            current = current.next
-    
-        new_node.next = current.next
-        current.next = new_node
-        return
+        new_node = _SL_Node(value, None)
+        
+        curr = self._front
+        prev=None
+        while curr is not None and curr._value <= value:
+            prev=curr
+            curr=curr._next
+            
+        if prev is None:
+            new_node._next=self._front
+            self._front=new_node
+        else:
+            prev._next=new_node
+            new_node._next=curr
+            
+        if curr is None:
+            self._rear = new_node
+        
+        if self._count == 0:
+            self._rear = self._front
+            
+        self._count+=1     
+            
 
     def _linear_search(self, key):
         """
@@ -130,8 +139,26 @@ class Sorted_List:
         """
 
         # your code here
-
-        return
+        
+        previous = None
+        current = self._front
+        index=0
+        found=False
+        
+        while current is not None and not found:
+            if current._value == key:
+                found=True
+            else:
+                previous=current
+                current=current._next
+                index+=1
+        
+        if not found:
+            #previous=None
+            current=None
+            index=-1
+        
+        return previous, current, index
 
     def remove(self, key):
         """
@@ -147,8 +174,26 @@ class Sorted_List:
         """
 
         # your code here
+        
+        previous, current, index = self._linear_search(key)
+        
+        if current is not None:
+            value = current._value
+            
+            if previous is None:
+                self._front = current._next
+            else:
+                previous._next = current._next
+                
+            if current._next is None:
+                self._rear = previous
+            
+            self._count -= 1
+        else:
+            value=None
+        
+        return value
 
-        return
 
     def remove_front(self):
         """
@@ -164,8 +209,16 @@ class Sorted_List:
 
 
         # your code here
+        
+        value = self._front._value
+        
+        self._front = self._front._next
+        self._count-=1
+        
+        if self._front is None:
+            self._rear = None
 
-        return
+        return value
 
     def remove_many(self, key):
         """
@@ -198,8 +251,14 @@ class Sorted_List:
         """
 
         # your code here
+        
+        _, node, _ = self._linear_search(key)
+        if node is None:
+            value=None
+        else:
+            value=node._value
 
-        return
+        return value
 
     def peek(self):
         """
@@ -216,7 +275,7 @@ class Sorted_List:
 
         # your code here
 
-        return
+        return deepcopy(self._front._value)
 
     def index(self, key):
         """
@@ -233,8 +292,10 @@ class Sorted_List:
         """
 
         # your code here
+        
+        _, _, i = self._linear_search(key)
 
-        return
+        return i
 
     def _is_valid_index(self, i):
         """
@@ -253,7 +314,8 @@ class Sorted_List:
 
         # your code here
 
-        return
+        return i in range((self._count *-1), self._count)
+
 
     def __getitem__(self, i):
         """
@@ -270,8 +332,19 @@ class Sorted_List:
         assert self._is_valid_index(i), "Invalid index value"
 
         # your code here
+        
+        if i < 0:
+            i+=self._count
+        
+        counter = 0
+        curr = self._front
+        while counter!=i:
+            counter+=1
+            curr=curr._next
+        
+        value=curr._value
 
-        return
+        return value
 
     def __contains__(self, key):
         """
@@ -287,8 +360,9 @@ class Sorted_List:
         """
 
         # your code here
-
-        return
+        _, curr, _ = self._linear_search(key)
+        
+        return curr is not None
 
     def max(self):
         """
@@ -304,7 +378,7 @@ class Sorted_List:
 
         # your code here
 
-        return
+        return deepcopy(self._rear._value)
 
     def min(self):
         """
@@ -320,7 +394,7 @@ class Sorted_List:
 
         # your code here
 
-        return
+        return deepcopy(self._front._value)
 
     def count(self, key):
         """
@@ -336,8 +410,14 @@ class Sorted_List:
         """
 
         # your code here
-
-        return
+        curr = self._front
+        number=0
+        while curr is not None:
+            if curr._value == key:
+                number+=1
+            curr=curr._next
+        
+        return number
 
     def clean(self):
         """
@@ -353,6 +433,23 @@ class Sorted_List:
         """
 
         # your code here
+        seen = []
+        curr=self._front
+        prev=None
+        while curr is not None:
+            if curr._value not in seen:
+                seen.append(curr._value)
+                prev=curr
+                curr=curr._next
+            else:
+                #remove
+                self._count -=1
+                prev._next = curr._next
+                
+                if curr == self._rear:
+                    self._rear = prev
+                curr=curr._next
+      
 
         return
 
@@ -428,6 +525,21 @@ class Sorted_List:
         """
 
         # your code here
+        source1_node = source1._front
+
+        while source1_node is not None:
+            value = source1_node._value
+            _, current, _ = source2._linear_search(value)
+
+            if current is not None:
+                # Value exists in both source lists.
+                _, current, _ = self._linear_search(value)
+
+                if current is None:
+                    # Value does not appear in target list.
+                    self.insert(value)
+
+            source1_node = source1_node._next
 
         return
 
@@ -449,6 +561,28 @@ class Sorted_List:
         """
 
         # your code here
+        source1_node = source1._front
+
+        while source1_node is not None:
+            value = source1_node._value
+            _, current, _ = self._linear_search(value)
+
+            if current is None:
+                # Value does not exist in new list.
+                self.insert(value)
+            source1_node = source1_node._next
+
+        source2_node = source2._front
+
+        while source2_node is not None:
+            value = source2_node._value
+            _, current, _ = self._linear_search(value)
+
+            if current is None:
+                # Value does not exist in current list.
+                self.insert(value)
+
+            source2_node = source2_node._next
 
         return
 
@@ -540,8 +674,22 @@ class Sorted_List:
         -------------------------------------------------------
         """
         # your code here
-
-        return
+        equals=True
+        if self._count != target._count:
+            equals=False
+        else:
+            s_curr = self._front
+            t_curr = target._front
+            
+            while s_curr is not None and equals:
+                if s_curr._value != t_curr._value:
+                    equals = False
+                
+                s_curr=s_curr._next
+                t_curr=t_curr._next
+        
+        
+        return equals
 
     def copy(self):
         """
