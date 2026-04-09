@@ -1,0 +1,272 @@
+LINKED ADTs EDGE CASE CHEAT SHEET
+Focus: pointer surgery + what can break
+
+============================================================
+1) UNIVERSAL POINTER SURGERY CHECKLIST
+============================================================
+
+Before writing code, ALWAYS ask:
+
+1. Is the structure empty?
+2. Is there only ONE node?
+3. Am I modifying the FRONT?
+4. Am I modifying the REAR?
+5. Am I removing the ONLY node?
+6. Do I need to update _count?
+
+Golden rule:
+- Always store next node BEFORE breaking links
+
+Example:
+next_node = curr._next
+
+============================================================
+2) SINGLY LINKED LIST EDGE CASES
+============================================================
+
+Insertion:
+
+FRONT:
+- empty list → front = new_node
+- otherwise → new_node._next = front, then update front
+
+REAR:
+- empty list → front = new_node
+- otherwise → traverse, last._next = new_node
+
+MIDDLE:
+- inserting after prev:
+    new_node._next = prev._next
+    prev._next = new_node
+
+Removal:
+
+FRONT:
+- empty → nothing
+- one node → front = None
+- multiple → front = front._next
+
+MIDDLE:
+- prev._next = curr._next
+
+REAR:
+- need prev node → prev._next = None
+
+============================================================
+3) SORTED LINKED LIST EDGE CASES
+============================================================
+
+Insertion:
+
+EMPTY:
+- front = new_node
+
+AT FRONT:
+- value <= front._value
+
+IN MIDDLE:
+- find first node greater than value
+
+AT REAR:
+- reached end
+
+IMPORTANT:
+- stable insertion:
+    use >= or <= carefully depending on requirement
+
+Template:
+
+while curr is not None and curr._value <= value:
+    prev = curr
+    curr = curr._next
+
+============================================================
+4) DOUBLY LINKED LIST / DEQUE EDGE CASES
+============================================================
+
+You MUST update BOTH directions.
+
+Insert front:
+
+new._next = front
+front._prev = new
+front = new
+
+Insert rear:
+
+rear._next = new
+new._prev = rear
+rear = new
+
+Empty case:
+- front = rear = new
+
+Remove front:
+
+if one node:
+    front = rear = None
+else:
+    front = front._next
+    front._prev = None
+
+Remove rear:
+
+if one node:
+    front = rear = None
+else:
+    rear = rear._prev
+    rear._next = None
+
+============================================================
+5) QUEUE (LINKED) EDGE CASES
+============================================================
+
+Enqueue:
+
+EMPTY:
+- front = rear = new
+
+NOT EMPTY:
+- rear._next = new
+- rear = new
+
+Dequeue:
+
+EMPTY:
+- error / return None
+
+ONE NODE:
+- value = front
+- front = rear = None
+
+MULTIPLE:
+- value = front
+- front = front._next
+
+============================================================
+6) STACK (LINKED) EDGE CASES
+============================================================
+
+Push (front-based):
+
+new._next = top
+top = new
+
+Pop:
+
+EMPTY:
+- error
+
+ONE NODE:
+- value = top
+- top = None
+
+MULTIPLE:
+- value = top
+- top = top._next
+
+============================================================
+7) PRIORITY QUEUE (LINKED SORTED) EDGE CASES
+============================================================
+
+Same as sorted list insertion:
+
+EMPTY:
+- front = new
+
+HIGHEST PRIORITY:
+- insert at front
+
+LOWEST PRIORITY:
+- insert at rear
+
+MIDDLE:
+- find insertion point
+
+Removal:
+- always remove front (highest priority)
+
+============================================================
+8) SWAP / POINTER REASSIGNMENT WARNINGS
+============================================================
+
+Never do this blindly:
+
+prev._next = curr._next
+curr._next = prev   (WRONG without saving nodes)
+
+Instead:
+
+temp = curr._next
+prev._next = temp
+
+============================================================
+9) COMMON BUGS TO AVOID
+============================================================
+
+1. Losing reference to list:
+   - forgetting to update front
+
+2. Breaking chain:
+   - overwriting _next before saving it
+
+3. Not updating rear:
+   - especially on insert/remove
+
+4. Forgetting empty case:
+   - causes crashes
+
+5. Forgetting one-node case:
+   - causes dangling pointers
+
+6. Not updating both directions (deque)
+
+============================================================
+10) QUICK EDGE CASE GRID
+============================================================
+
+Operation      Empty   One Node   Front   Rear   Middle
+------------------------------------------------------
+Insert         ✓       ✓          ✓       ✓      ✓
+Remove         ✓       ✓          ✓       ✓      ✓
+Search         ✓       ✓          ✓       ✓      ✓
+
+Always check ALL columns.
+
+============================================================
+11) MINIMAL POINTER TEMPLATES
+============================================================
+
+Insert after node:
+
+new._next = curr._next
+curr._next = new
+
+Remove after node:
+
+curr._next = curr._next._next
+
+Insert front:
+
+new._next = front
+front = new
+
+Remove front:
+
+front = front._next
+
+============================================================
+12) FINAL EXAM STRATEGY
+============================================================
+
+When stuck:
+
+1. Draw 3 nodes on paper
+2. Label pointers
+3. Simulate changes
+4. Then code it
+
+If you can draw it, you can code it.
+
+============================================================
+END

@@ -1,0 +1,738 @@
+BST RECURSION CHEAT SHEET
+Based on your BST_linked.py implementation style.
+
+============================================================
+1) UNIVERSAL RECURSION SKELETON
+============================================================
+
+Use this when you do not know where to start yet.
+
+def _func_aux(self, node):
+    if node is None:
+        return BASE_CASE_VALUE
+
+    # current node work
+    curr = ...
+
+    # recursive calls
+    left = self._func_aux(node._left)
+    right = self._func_aux(node._right)
+
+    # combine results
+    return ...
+
+When to use:
+- Almost every recursive BST / binary tree question starts here.
+
+How to think about it:
+- "What should happen if the node does not exist?"
+- "What result does the current node contribute?"
+- "What do I need from the left and right subtrees?"
+- "How do I combine those answers?"
+
+Quick rule:
+- Empty subtree -> base case
+- Current node -> local work
+- Children -> recursive calls
+- Final answer -> combine
+
+
+============================================================
+2) COUNT PATTERN
+============================================================
+
+Template:
+
+def _count_aux(self, node):
+    if node is None:
+        return 0
+
+    count = 1 if CONDITION else 0
+
+    return count + self._count_aux(node._left) + self._count_aux(node._right)
+
+Use this for:
+- count leaves
+- count nodes with one child
+- count nodes with two children
+- count nodes greater than x
+- count even values
+- count anything where each node either contributes 1 or 0
+
+How it works:
+- Empty subtree contributes 0
+- Current node either counts or does not
+- Add left result and right result
+
+Common conditions:
+- Leaf:
+    node._left is None and node._right is None
+- One child:
+    (node._left is not None) ^ (node._right is not None)
+- Two children:
+    node._left is not None and node._right is not None
+- Value check:
+    node._value > x
+
+Example:
+
+def _leaf_count_aux(self, node):
+    if node is None:
+        return 0
+
+    count = 1 if node._left is None and node._right is None else 0
+    return count + self._leaf_count_aux(node._left) + self._leaf_count_aux(node._right)
+
+
+============================================================
+3) SUM / TOTAL PATTERN
+============================================================
+
+Template:
+
+def _sum_aux(self, node):
+    if node is None:
+        return 0
+
+    return node._value + self._sum_aux(node._left) + self._sum_aux(node._right)
+
+Use this for:
+- sum of all values
+- sum of positive values
+- total of values in a range
+- anything where every node contributes a number instead of just 1 or 0
+
+How it works:
+- Empty subtree contributes 0
+- Current node contributes a numeric amount
+- Add left and right results
+
+Modified version:
+
+def _sum_cond_aux(self, node):
+    if node is None:
+        return 0
+
+    curr = node._value if CONDITION else 0
+    return curr + self._sum_cond_aux(node._left) + self._sum_cond_aux(node._right)
+
+
+============================================================
+4) BOOLEAN "ALL TRUE" PATTERN
+============================================================
+
+Template:
+
+def _check_aux(self, node):
+    if node is None:
+        return True
+
+    curr_valid = CONDITION
+
+    return (
+        curr_valid
+        and self._check_aux(node._left)
+        and self._check_aux(node._right)
+    )
+
+Use this for:
+- is every node valid?
+- does every node satisfy some rule?
+- structure validation questions
+- "are these all okay?" type recursion
+
+How it works:
+- Empty subtree is usually True because it does not violate anything
+- Current node must be valid
+- Left subtree must be valid
+- Right subtree must be valid
+- All must be True
+
+Use this when:
+- A single bad node should make the whole answer False
+
+
+============================================================
+5) BOOLEAN "ANY TRUE" / SEARCH BOTH SIDES
+============================================================
+
+Template:
+
+def _contains_aux(self, node, key):
+    if node is None:
+        return False
+
+    if node._value == key:
+        return True
+
+    return (
+        self._contains_aux(node._left, key)
+        or self._contains_aux(node._right, key)
+    )
+
+Use this for:
+- searching a regular binary tree
+- checking if some condition exists anywhere
+- "does at least one node satisfy this?"
+
+How it works:
+- Empty subtree cannot contain the target
+- If current node matches, stop and return True
+- Otherwise check left OR right
+
+IMPORTANT:
+- This is for a general binary tree
+- Do NOT use this for a BST unless the question ignores BST ordering
+
+Exam trap:
+- Binary tree search -> both sides
+- BST search -> only one side
+
+
+============================================================
+6) BST SEARCH PATTERN (ONE SIDE ONLY)
+============================================================
+
+Template:
+
+def _search_aux(self, node, key):
+    if node is None:
+        return None
+
+    if key == node._value:
+        return node._value
+    elif key < node._value:
+        return self._search_aux(node._left, key)
+    else:
+        return self._search_aux(node._right, key)
+
+Use this for:
+- retrieve_r
+- contains in a BST
+- finding where a key should be
+- parent / ancestor style questions
+
+How it works:
+- Compare key to current node
+- Smaller goes left
+- Larger goes right
+- Equal means found
+
+Why it is better:
+- Does not waste time searching both sides
+- Uses BST ordering properly
+
+
+============================================================
+7) MAX / MIN IN A BST
+============================================================
+
+Maximum template:
+
+def _max_aux(self, node):
+    if node._right is None:
+        return deepcopy(node._value)
+    return self._max_aux(node._right)
+
+Minimum template:
+
+def _min_aux(self, node):
+    if node._left is None:
+        return deepcopy(node._value)
+    return self._min_aux(node._left)
+
+Use this for:
+- max_r
+- min_r
+
+How it works:
+- Largest value is all the way right
+- Smallest value is all the way left
+- Keep recursing until you cannot go farther
+
+When NOT to use:
+- Regular binary tree without BST ordering
+
+
+============================================================
+8) HEIGHT PATTERN
+============================================================
+
+Template:
+
+def _height_aux(self, node):
+    if node is None:
+        return 0
+
+    left = self._height_aux(node._left)
+    right = self._height_aux(node._right)
+
+    return 1 + max(left, right)
+
+Use this for:
+- computing tree height from scratch
+- longest path from node to leaf
+- support for balanced tree checks
+
+How it works:
+- Empty subtree height is usually 0 in your implementation style
+- Height of a node is 1 + larger child height
+
+Important:
+- Some courses define empty tree height as -1 instead of 0
+- Your BST node heights appear to use 0 for empty child and 1 for a leaf, so 0 here matches your file best
+
+
+============================================================
+9) DOUBLE-RETURN PATTERN
+============================================================
+
+Template:
+
+def _func_aux(self, node):
+    if node is None:
+        return BASE1, BASE2
+
+    left1, left2 = self._func_aux(node._left)
+    right1, right2 = self._func_aux(node._right)
+
+    val1 = ...
+    val2 = ...
+
+    return val1, val2
+
+Use this for:
+- balance checks
+- returning height + valid flag
+- returning count + sum
+- any question where one recursive pass needs to produce 2 answers
+
+How it works:
+- Recursive call returns multiple pieces of info
+- Current node combines them into a new tuple
+
+Example: balanced tree
+
+def _is_balanced_aux(self, node):
+    if node is None:
+        return 0, True
+
+    left_height, left_balanced = self._is_balanced_aux(node._left)
+    right_height, right_balanced = self._is_balanced_aux(node._right)
+
+    node_height = 1 + max(left_height, right_height)
+    node_balanced = (
+        left_balanced
+        and right_balanced
+        and abs(left_height - right_height) <= 1
+    )
+
+    return node_height, node_balanced
+
+Why this is great:
+- Gets everything in one traversal
+- Cleaner than doing separate height calls over and over
+
+
+============================================================
+10) BUILD A NEW TREE PATTERN
+============================================================
+
+Template:
+
+def _copy_aux(self, node):
+    if node is None:
+        return None
+
+    new_node = _BST_Node(node._value)
+    new_node._left = self._copy_aux(node._left)
+    new_node._right = self._copy_aux(node._right)
+
+    return new_node
+
+Use this for:
+- copying a tree
+- creating a transformed tree
+- filtering into a new structure
+- mirror construction
+
+How it works:
+- Empty node becomes None
+- Create a new node from the current value
+- Recursively build its left and right children
+
+Key idea:
+- Instead of returning numbers or booleans, you return a node
+
+
+============================================================
+11) MIRROR / SWAP-CHILDREN BUILD PATTERN
+============================================================
+
+Template:
+
+def _mirror_aux(self, node):
+    if node is None:
+        return None
+
+    new_node = _BST_Node(node._value)
+    new_node._left = self._mirror_aux(node._right)
+    new_node._right = self._mirror_aux(node._left)
+
+    return new_node
+
+Use this for:
+- making a mirrored copy of a tree
+
+How it works:
+- Same as copy, except left and right are swapped
+
+
+============================================================
+12) INORDER / PREORDER / POSTORDER LIST PATTERN
+============================================================
+
+Inorder:
+
+def _inorder_aux(self, node):
+    a = []
+    if node is not None:
+        a += self._inorder_aux(node._left)
+        a.append(deepcopy(node._value))
+        a += self._inorder_aux(node._right)
+    return a
+
+Preorder:
+
+def _preorder_aux(self, node):
+    a = []
+    if node is not None:
+        a.append(deepcopy(node._value))
+        a += self._preorder_aux(node._left)
+        a += self._preorder_aux(node._right)
+    return a
+
+Postorder:
+
+def _postorder_aux(self, node):
+    a = []
+    if node is not None:
+        a += self._postorder_aux(node._left)
+        a += self._postorder_aux(node._right)
+        a.append(deepcopy(node._value))
+    return a
+
+Use this for:
+- traversal order questions
+- generating ordered lists
+- checking the "visit position" in recursion
+
+How to choose:
+- Preorder: process current first
+- Inorder: process current in the middle
+- Postorder: process current last
+
+Easy memory trick:
+- Pre = node first
+- In = node in the middle
+- Post = node after children
+
+Special BST fact:
+- Inorder traversal of a valid BST gives sorted order
+
+
+============================================================
+13) RANGE / PRUNING PATTERN (BST ONLY)
+============================================================
+
+Template:
+
+def _count_range_aux(self, node, low, high):
+    if node is None:
+        return 0
+
+    if node._value < low:
+        return self._count_range_aux(node._right, low, high)
+    elif node._value > high:
+        return self._count_range_aux(node._left, low, high)
+    else:
+        return (
+            1
+            + self._count_range_aux(node._left, low, high)
+            + self._count_range_aux(node._right, low, high)
+        )
+
+Use this for:
+- count values in a range
+- sum values in a range
+- find values in a range
+- any BST question where you can skip impossible subtrees
+
+How it works:
+- If current value is too small, left subtree is also too small -> skip left
+- If current value is too large, right subtree is also too large -> skip right
+- Otherwise current node is in range, so include it and check both sides
+
+Why it matters:
+- Faster and smarter than searching every node
+
+
+============================================================
+14) PARENT-FINDING PATTERN
+============================================================
+
+Template:
+
+def _parent_aux(self, node, key):
+    if node is None:
+        return None
+
+    if node._left is not None and node._left._value == key:
+        return deepcopy(node._value)
+    if node._right is not None and node._right._value == key:
+        return deepcopy(node._value)
+
+    if key < node._value:
+        return self._parent_aux(node._left, key)
+    else:
+        return self._parent_aux(node._right, key)
+
+Use this for:
+- finding parent in a BST
+- questions where the answer depends on a node's child
+
+How it works:
+- First check if current node is the parent
+- If not, move to the correct subtree using BST order
+
+
+============================================================
+15) TREE EQUALITY / SAME STRUCTURE PATTERN
+============================================================
+
+Template:
+
+def _eq_aux(self, n1, n2):
+    if n1 is None and n2 is None:
+        return True
+    if n1 is None or n2 is None:
+        return False
+
+    return (
+        n1._value == n2._value
+        and self._eq_aux(n1._left, n2._left)
+        and self._eq_aux(n1._right, n2._right)
+    )
+
+Use this for:
+- are two trees identical?
+- same values in same positions?
+- same structure and contents?
+
+How it works:
+- Both empty -> same
+- One empty and one not -> different
+- Current values must match
+- Left subtrees must match
+- Right subtrees must match
+
+
+============================================================
+16) VALID BST PATTERN (BETTER SAFE VERSION)
+============================================================
+
+Template:
+
+def _valid_aux(self, node, low=None, high=None):
+    if node is None:
+        return True
+
+    if low is not None and node._value <= low:
+        return False
+    if high is not None and node._value >= high:
+        return False
+
+    return (
+        self._valid_aux(node._left, low, node._value)
+        and self._valid_aux(node._right, node._value, high)
+    )
+
+Use this for:
+- true BST validation
+
+How it works:
+- Every node has a legal range of values
+- Left subtree must stay below the current node
+- Right subtree must stay above the current node
+- Bounds keep tightening as recursion goes deeper
+
+Why this beats local-child-only checks:
+- A bad value can hide deeper in a subtree
+- Checking only immediate children can miss invalid BSTs
+
+Note:
+- If your prof also wants height validation, that can be added separately
+
+
+============================================================
+17) RETRIEVE_R TEMPLATE FOR YOUR FILE
+============================================================
+
+def retrieve_r(self, key):
+    return self._retrieve_r_aux(self._root, key)
+
+def _retrieve_r_aux(self, node, key):
+    if node is None:
+        value = None
+    elif key == node._value:
+        value = deepcopy(node._value)
+    elif key < node._value:
+        value = self._retrieve_r_aux(node._left, key)
+    else:
+        value = self._retrieve_r_aux(node._right, key)
+    return value
+
+Use this when:
+- You need a direct recursive retrieve matching your BST style
+
+
+============================================================
+18) MAX_R TEMPLATE FOR YOUR FILE
+============================================================
+
+def max_r(self):
+    assert self._root is not None, "Cannot find maximum of an empty BST"
+    return self._max_r_aux(self._root)
+
+def _max_r_aux(self, node):
+    if node._right is None:
+        value = deepcopy(node._value)
+    else:
+        value = self._max_r_aux(node._right)
+    return value
+
+
+============================================================
+19) MIN_R TEMPLATE FOR YOUR FILE
+============================================================
+
+def min_r(self):
+    assert self._root is not None, "Cannot find minimum of an empty BST"
+    return self._min_r_aux(self._root)
+
+def _min_r_aux(self, node):
+    if node._left is None:
+        value = deepcopy(node._value)
+    else:
+        value = self._min_r_aux(node._left)
+    return value
+
+
+============================================================
+20) QUICK EXAM PICK GUIDE
+============================================================
+
+If the function returns an int:
+- Usually COUNT or SUM pattern
+
+If the function returns True/False:
+- Usually ALL-TRUE pattern or ANY-TRUE pattern
+
+If the function returns a node / tree:
+- BUILD-NEW-TREE pattern
+
+If the function is searching a BST:
+- Search ONE side only
+
+If the function is searching a general binary tree:
+- Search BOTH sides
+
+If the function needs 2 answers at once:
+- DOUBLE-RETURN pattern
+
+If the question mentions traversal order:
+- Use PRE / IN / POST pattern
+
+If the BST property can skip work:
+- Use PRUNING pattern
+
+
+============================================================
+21) COMMON EXAM GOTCHAS
+============================================================
+
+1. BST vs binary tree
+- BST lets you go one side only
+- regular binary tree usually needs both sides
+
+2. Base cases matter
+- count/sum -> usually 0
+- boolean validation -> usually True
+- search -> usually False or None
+- build tree -> usually None
+
+3. Inorder on a BST is sorted
+
+4. "Leaf" means no children at all
+
+5. "One child" means exactly one, not two
+
+6. Some profs define height differently
+- Your implementation style suggests:
+  empty child = 0, leaf = 1
+
+7. If returning copies in your class style, remember deepcopy(node._value)
+
+
+============================================================
+22) ULTRA-SHORT TEMPLATE BLOCK
+============================================================
+
+COUNT:
+if node is None:
+    return 0
+count = 1 if CONDITION else 0
+return count + left + right
+
+SUM:
+if node is None:
+    return 0
+return curr + left + right
+
+ALL TRUE:
+if node is None:
+    return True
+return curr_valid and left and right
+
+ANY TRUE:
+if node is None:
+    return False
+if match:
+    return True
+return left or right
+
+BST SEARCH:
+if node is None:
+    return None/False
+if key == node._value:
+    return ...
+elif key < node._value:
+    return left
+else:
+    return right
+
+HEIGHT:
+if node is None:
+    return 0
+return 1 + max(left, right)
+
+BUILD TREE:
+if node is None:
+    return None
+new_node = _BST_Node(node._value)
+new_node._left = ...
+new_node._right = ...
+return new_node
+
+
+End of cheat sheet.
