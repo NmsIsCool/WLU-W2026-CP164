@@ -1,0 +1,173 @@
+DATA STRUCTURES TIME COMPLEXITY CHEAT SHEET
+Focus: quick lookup + pattern recognition for exams
+
+============================================================
+1) ARRAYS
+============================================================
+
+Access (index)     → O(1)
+Search             → O(n)
+Insert (end)       → O(1) amortized
+Insert (middle)    → O(n)
+Delete             → O(n)
+
+Key idea:
+- Fast random access
+- Slow insert/delete due to shifting
+
+
+============================================================
+2) SINGLY LINKED LIST
+============================================================
+
+Access             → O(n)
+Search             → O(n)
+Insert (front)     → O(1)
+Insert (after node)→ O(1)
+Insert (end)       → O(n) (O(1) if rear pointer exists)
+Delete (front)     → O(1)
+Delete (after node)→ O(1)
+Delete (end)       → O(n)
+
+Key idea:
+- No random access
+- Traversal dominates cost
+
+
+============================================================
+3) DOUBLY LINKED LIST / DEQUE
+============================================================
+
+Access             → O(n)
+Search             → O(n)
+Insert front       → O(1)
+Insert rear        → O(1)
+Delete front       → O(1)
+Delete rear        → O(1)
+
+Key idea:
+- Extra pointer allows fast operations at both ends
+
+
+============================================================
+4) STACK (ARRAY OR LINKED)
+============================================================
+
+Push               → O(1)
+Pop                → O(1)
+Peek               → O(1)
+Search             → O(n)
+
+Key idea:
+- LIFO structure
+- Core operations always constant time
+
+
+============================================================
+5) QUEUE (LINKED)
+============================================================
+
+Enqueue            → O(1)
+Dequeue            → O(1)
+Peek               → O(1)
+Search             → O(n)
+
+IMPORTANT:
+- Must maintain both front and rear for O(1)
+
+
+============================================================
+6) PRIORITY QUEUE (SORTED LINKED)
+============================================================
+
+Insert             → O(n)
+Remove (highest)   → O(1)
+Peek               → O(1)
+
+Key idea:
+- Sorted insert is expensive
+- Removal is cheap
+
+
+============================================================
+7) BINARY SEARCH TREE (BST)
+============================================================
+
+Search             → O(log n) avg, O(n) worst
+Insert             → O(log n) avg, O(n) worst
+Delete             → O(log n) avg, O(n) worst
+Traversal          → O(n)
+Min / Max          → O(log n) avg, O(n) worst
+
+Key idea:
+- Balanced → O(log n)
+- Skewed → behaves like linked list (O(n))
+
+
+============================================================
+8) GENERAL BINARY TREE
+============================================================
+
+Search             → O(n)
+Traversal          → O(n)
+Insert (no order)  → O(n)
+
+Key idea:
+- No ordering → must check all nodes
+
+
+============================================================
+9) HASH TABLE
+============================================================
+
+Search             → O(1) avg, O(n) worst
+Insert             → O(1) avg, O(n) worst
+Delete             → O(1) avg, O(n) worst
+
+Key idea:
+- Collisions cause worst-case degradation
+
+
+============================================================
+10) CORE COMPLEXITY PATTERNS
+============================================================
+
+Visit every node       → O(n)
+Tree traversal         → O(n)
+Single path (BST)      → O(log n) avg
+Nested loops           → multiply complexities
+
+Examples:
+- Two nested loops → O(n^2)
+- Loop + log operation → O(n log n)
+
+
+============================================================
+11) COMMON EXAM TRAPS
+============================================================
+
+1. BST is NOT always O(log n)
+   - Only true when balanced
+
+2. Linked list insert is NOT always O(1)
+   - Only if position/node already known
+
+3. Queue is NOT O(1) without rear pointer
+
+4. Traversals are ALWAYS O(n)
+
+5. Worst case matters if explicitly asked
+
+
+============================================================
+12) ULTRA-SHORT MEMORY BLOCK
+============================================================
+
+Array insert/delete → O(n)
+Linked list access  → O(n)
+Stack/Queue ops     → O(1)
+BST ops             → O(log n) avg, O(n) worst
+Traversal           → O(n)
+
+============================================================
+END
