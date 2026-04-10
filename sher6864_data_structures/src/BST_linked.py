@@ -935,6 +935,26 @@ class BST:
             a.append(deepcopy(node._value))
             a+=self._find_kth_smallest_aux(node._right)
         return a
+    
+    def sum_of_leaves(self):
+        
+        sum_leaves = self._sum_of_leaves_aux(self._root)
+        return sum_leaves
+        
+    def _sum_of_leaves_aux(self, node):
+        sum_leaves=0
+        if node is not None:
+            
+            if node._left is None and node._right is None: #No children, must be a leaf
+                sum_leaves+=node._value
+            
+            else:
+                if node._left is not None:
+                    sum_leaves+=self._sum_of_leaves_aux(node._left)
+                if node._right is not None:
+                    sum_leaves+=self._sum_of_leaves_aux(node._right)
+                    
+        return sum_leaves
 
     def __iter__(self):
         """
