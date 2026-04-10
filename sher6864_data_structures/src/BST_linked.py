@@ -889,6 +889,52 @@ class BST:
                 self._count_aux(node._right)
         return number
 
+    def count_in_range(self, maximum, minimum):
+        """
+        ---------------------------------------------------------
+        Returns the number of nodes between a certain range
+        in a BST
+        -------------------------------------------------------
+        Parameters:
+            maximum - max number of the range
+            minumum - min number of the range
+        Returns:
+            number - number of nodes in range
+        ----------------------------------------------------------
+        """
+        number = self._count_in_range_aux(self._root, maximum, minimum)
+        
+        return number
+        
+    def _count_in_range_aux(self, node, maximum, minimum):
+        count=0
+        if node is not None:
+        
+            if node._value >= minimum and node._value <= maximum:
+                count+=1
+            
+            if node._left is not None:
+                count+=self._count_in_range_aux(node._left)
+            if node._right is not None:
+                count+=self._count_in_range_aux(node._right)
+                
+        return count
+    
+    def find_kth_smallest(self, k):
+        
+        #In order traversal
+        arr = self._find_kth_smallest_aux(self._root)
+        kth_smallest = arr[k-1]
+        
+        return kth_smallest
+    
+    def _find_kth_smallest_aux(self, node):
+        a=[]
+        if node is not None:
+            a+= self._find_kth_smallest_aux(node._left)
+            a.append(deepcopy(node._value))
+            a+=self._find_kth_smallest_aux(node._right)
+        return a
 
     def __iter__(self):
         """

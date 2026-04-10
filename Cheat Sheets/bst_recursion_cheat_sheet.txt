@@ -735,4 +735,20 @@ new_node._right = ...
 return new_node
 
 
-End of cheat sheet.
+
+ 4. Find lowest common ancestor (LCA)
+5
+
+Question:
+
+Given two values, find their lowest common ancestor in a BST.
+
+Key idea:
+
+if both < node → go left
+if both > node → go right
+otherwise → current node is LCA
+
+What they’re testing:
+
+using BST properties for decision making
