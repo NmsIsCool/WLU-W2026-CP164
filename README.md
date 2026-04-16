@@ -8,3 +8,5 @@ Projects are for course labs and assignments
 Note:
 Use 'git pull' before starting work on projects
 Use 'git commit -m "<Message>"' and 'git push' after working on projects
+
+Course End Grade - 92% - Translates to a 12 point GPA of 12
